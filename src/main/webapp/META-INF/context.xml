@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <Resource name="jdbc/db"
+              auth="Container"
+              type="javax.sql.DataSource"
+              username="root" password="***REMOVED***"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://db:3306/sample?createDatabaseIfNotExist=true"/>
+</Context>
