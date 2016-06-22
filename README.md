@@ -13,7 +13,8 @@ Self-Service Sample Application
 
 Check for the following output from Tomcat startup:
 
-```INFO: Starting Servlet Engine: Apache Tomcat/8.0.14
+```
+INFO: Starting Servlet Engine: Apache Tomcat/8.0.14
 Jun 22, 2016 5:41:30 AM org.apache.catalina.startup.HostConfig deployWAR
 INFO: Deploying web application archive /tomcat/webapps/SampleApp.war
 Jun 22, 2016 5:41:40 AM org.apache.catalina.util.SessionIdGeneratorBase createSecureRandom
