@@ -30,9 +30,6 @@ RUN curl -O -k https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERS
     && mv apache-tomcat-${TOMCAT_MINOR_VERSION} tomcat
 RUN cd ${CATALINA_HOME}/bin;chmod +x *.sh
 
-# Enable Tomcat admin user
-#ADD tomcat-users.xml ${CATALINA_HOME}/conf/tomcat-users.xml
-
 # Install Maven
 RUN yum -y install wget
 RUN wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
@@ -42,7 +39,7 @@ RUN mvn --version
 
 # Build sample project
 ENV PROJECT_NAME SampleApp
-ENV PROJECT_HOME https://github.com/mqprichard
+ENV PROJECT_HOME https://github.com/appdynamics
 ENV APP_NAME SampleApp
 
 #RUN yum install -y git
@@ -52,10 +49,10 @@ ENV APP_NAME SampleApp
 #RUN yum install -y unzip
 #RUN unzip -q /SampleApp.zip
 
-RUN mkdir SampleApp
-ADD pom.xml /SampleApp/
-ADD src /SampleApp/src/
-RUN cd /SampleApp; mvn clean install
+RUN mkdir ${APP_NAME}
+ADD pom.xml /${APP_NAME}/
+ADD src /${APP_NAME}/src/
+RUN cd /${APP_NAME}; mvn clean install
 
 # Copy war file to Tomcat
 RUN cp ${PROJECT_NAME}/target/${APP_NAME}.war ${CATALINA_HOME}/webapps/
