@@ -49,3 +49,22 @@ INFO: Binding com.appdynamics.sample.resource.ProductResource to GuiceManagedCom
 Jun 22, 2016 5:41:45 AM org.apache.catalina.startup.HostConfig deployWAR
 INFO: Deployment of web application archive /tomcat/webapps/SampleApp.war has finished in 14,079 ms
 ```
+## An Example
+
+```
+$ curl -X POST -H "Content-Type:application/json" localdocker:8080/SampleApp/products -d '{"name":"iPad", "stock":1 }'
+$ curl -X POST -H "Content-Type:application/json" localdocker:8080/SampleApp/products -d '{"name":"iPhone", "stock":1 }'
+$ curl -s localdocker:8080/SampleApp/products | python -mjson.tool
+[
+    {
+        "id": 1,
+        "name": "iPad",
+        "stock": 1
+    },
+    {
+        "id": 2,
+        "name": "iPhone",
+        "stock": 1
+    }
+]
+```
