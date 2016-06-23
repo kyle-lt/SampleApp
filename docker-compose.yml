@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  rest:
+    build: ./rest
+    container_name: rest
+    image: appdynamics/sample-app
+    links:
+      - db
+    ports: 
+      - "8080:8080"
+
+  db:
+    container_name: db
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=***REMOVED***  
+    ports: 
+      - "3306:3306"
