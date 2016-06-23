@@ -41,6 +41,8 @@ public class ProductResource extends ResourceCollection<Product> {
         super(Product.class);
     }
 
+
+//    HELLO THIS IS A CHANGE
     @PUT
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
