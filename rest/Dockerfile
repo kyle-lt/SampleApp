@@ -42,13 +42,6 @@ ENV PROJECT_NAME SampleApp
 ENV PROJECT_HOME https://github.com/appdynamics
 ENV APP_NAME SampleApp
 
-#RUN yum install -y git
-#RUN git clone ${PROJECT_HOME}/${PROJECT_NAME}.git
-#RUN cd ${PROJECT_NAME}; mvn clean install
-#ADD SampleApp.zip /
-#RUN yum install -y unzip
-#RUN unzip -q /SampleApp.zip
-
 RUN mkdir ${APP_NAME}
 ADD pom.xml /${APP_NAME}/
 ADD src /${APP_NAME}/src/
@@ -56,11 +49,10 @@ RUN cd /${APP_NAME}; mvn clean install
 
 # Copy war file to Tomcat
 RUN cp ${PROJECT_NAME}/target/${APP_NAME}.war ${CATALINA_HOME}/webapps/
+RUN yum install -y unzip
 
-#ADD startup.sh /
-#RUN chmod +x /startup.sh
-#CMD /startup.sh
+ADD startup.sh /
+RUN chmod +x /startup.sh
 
-CMD cd ${CATALINA_HOME}/bin; java -cp ${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar org.apache.catalina.startup.Bootstrap
-
+CMD /startup.sh
 EXPOSE 8080
