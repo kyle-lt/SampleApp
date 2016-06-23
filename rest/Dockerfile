@@ -1,15 +1,19 @@
 FROM centos:centos6
 MAINTAINER alana.anderson@appdynamics.com
 
-# Install Oracle Java JDK8
-ENV JDK8_VERSION 92
-#RUN yum install -y wget
-#ENV JDK_DOWNLOAD_PATH 8u${JDK8_VERSION}-b14/jdk-8u${JDK8_VERSION}-linux-x64.rpm
-#RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/${JDK_DOWNLOAD_PATH} -O jdk-linux-x64.rpm
-ADD jdk-8u${JDK8_VERSION}-linux-x64.rpm /jdk-linux-x64.rpm
-RUN yum install -y jdk-linux-x64.rpm
-RUN rm jdk-linux-x64.rpm
-ENV JAVA_HOME /usr/java/jdk1.8.0_${JDK8_VERSION}
+# Install Oracle Java JDK 8
+# Download the Oracle JDK from http://www.oracle.com/technetwork/java/javase/downloads
+# Download the 64-bit Linux RPM distribution, copy to the directory containing this file and set the version below
+#ENV JDK8_VERSION 92
+#ADD jdk-8u${JDK8_VERSION}-linux-x64.rpm /jdk-linux-x64.rpm
+#RUN yum install -y jdk-linux-x64.rpm
+#RUN rm jdk-linux-x64.rpm
+#ENV JAVA_HOME /usr/java/jdk1.8.0_${JDK8_VERSION}
+#ENV PATH $JAVA_HOME/bin:$PATH
+
+# Install OpenJDK 8
+RUN yum install -y java-1.8.0-openjdk-devel
+ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk.x86_64
 ENV PATH $JAVA_HOME/bin:$PATH
 
 # set timezone to UTC
@@ -42,13 +46,6 @@ ENV PROJECT_NAME SampleApp
 ENV PROJECT_HOME https://github.com/appdynamics
 ENV APP_NAME SampleApp
 
-#RUN yum install -y git
-#RUN git clone ${PROJECT_HOME}/${PROJECT_NAME}.git
-#RUN cd ${PROJECT_NAME}; mvn clean install
-#ADD SampleApp.zip /
-#RUN yum install -y unzip
-#RUN unzip -q /SampleApp.zip
-
 RUN mkdir ${APP_NAME}
 ADD pom.xml /${APP_NAME}/
 ADD src /${APP_NAME}/src/
@@ -56,11 +53,10 @@ RUN cd /${APP_NAME}; mvn clean install
 
 # Copy war file to Tomcat
 RUN cp ${PROJECT_NAME}/target/${APP_NAME}.war ${CATALINA_HOME}/webapps/
+RUN yum install -y unzip
 
-#ADD startup.sh /
-#RUN chmod +x /startup.sh
-#CMD /startup.sh
+ADD startup.sh /
+RUN chmod +x /startup.sh
 
-CMD cd ${CATALINA_HOME}/bin; java -cp ${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar org.apache.catalina.startup.Bootstrap
-
+CMD /startup.sh
 EXPOSE 8080

@@ -7,6 +7,8 @@ services:
     image: appdynamics/sample-app
     links:
       - db
+    volumes:
+      - .:/appdynamics
     ports: 
       - "8080:8080"
 
