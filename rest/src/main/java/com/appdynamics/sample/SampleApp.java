@@ -17,6 +17,7 @@
 package com.appdynamics.sample;
 
 import com.appdynamics.sample.resource.ProductResource;
+import com.appdynamics.sample.resource.RESTExceptions;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.persist.PersistFilter;
@@ -38,7 +39,8 @@ public class SampleApp extends GuiceServletContextListener {
                 new JerseyServletModule() {
                     protected void configureServlets() {
                         bind(ProductResource.class);
-
+                        bind(RESTExceptions.class);
+                        
                         filter("/*").through(PersistFilter.class);
                         serve("/*").with(GuiceContainer.class);
                     }
