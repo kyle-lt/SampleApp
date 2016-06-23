@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<path fill="#0090D8" d="M12,22.9375c-6.04834,0-10.96875-4.9209-10.96875-10.96875C1.03125,5.92041,5.95166,1,12,1
+		c6.04785,0,10.96875,4.92041,10.96875,10.96875C22.96875,18.0166,18.04785,22.9375,12,22.9375z"/>
+	<g>
+		<path fill="#FFFFFF" d="M12,2c5.49679,0,9.96875,4.47196,9.96875,9.96875S17.49679,21.9375,12,21.9375
+			s-9.96875-4.47196-9.96875-9.96875S6.50321,2,12,2 M12,0C5.38984,0,0.03125,5.35859,0.03125,11.96875S5.38984,23.9375,12,23.9375
+			s11.96875-5.35859,11.96875-11.96875S18.61016,0,12,0L12,0z"/>
+	</g>
+</g>
+<rect x="4.74479" y="8.41859" fill="none" width="24.24261" height="6.49111"/>
+<text transform="matrix(1 0 0 1 4.74414 14.12886)" fill="#FFFFFF" font-family="'OpenSans-Bold'" font-size="7.51345">Java</text>
+</svg>

@@ -1,0 +1,53 @@
+<div class="container">
+    <div style="margin-top: 96px;">
+
+        <div class="section" ng-hide="isMobile">
+            <h3> Select a Deployment Method</h3>
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Deploy
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#docker">Docker</a></li>
+                    <li><a href="#github">Github</a></li>
+                    <li><a href="#pass">PaaS</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="section" id="docker" ng-hide="isMobile">
+            <h3> Docker </h3>
+
+            <div>
+                Prerequisites
+                <p>
+                    Docker installed on your machine
+                </p>
+
+                <p> Pull the sample application as an image from DockerHub </p>
+            </div>
+        </div>
+
+        <div class="section" id="github">
+            <h3> Github </h3>
+
+            <p> Pull the sample application source code from GitHub and use as your application in the Getting Started Wizard</p>
+            <div class="code">
+                git clone https://github.com/Appdynamics/SampleApp.git
+            </div>
+        </div>
+
+        <div class="section" id="pass" ng-hide="isMobile">
+            <h3> PaaS</h3>
+
+            <div>
+                Prerequisites
+                <p>PaaS account</p>
+                <p>Instrument the sample application using a PaaS platform</p>
+            </div>
+        </div>
+
+    </div>
+</div>
