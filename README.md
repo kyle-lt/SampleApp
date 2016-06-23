@@ -2,14 +2,10 @@
 Self-Service Sample Application
 
 ## Build Instructions
-* `git clone https://github.com/Appdynamics/SampleApp.git`
-* `docker build -t appdynamics/sample-app .`
-
-## Running SampleApp
-*TODO: Convert to docker-compose*
-
-* `docker run -d --name db -e MYSQL_ROOT_PASSWORD=***REMOVED*** -p 3306:3306 mysql`
-* `docker run --rm -it -p 8080:8080 --link db:db --name sample-app appdynamics/sample-app`
+Build and run containers with docker-compose:
+```
+docker-compose up
+```
 
 Check for the following output from Tomcat startup:
 
