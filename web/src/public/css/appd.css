@@ -1,0 +1,147 @@
+body {
+    padding-top: 70px;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.center {
+    display: block;
+    margin: 0 auto;
+}
+
+.jumbotron {
+    background-color: #999999;
+}
+
+.caption h3 {
+    text-decoration: underline;
+}
+
+.glyphicon {
+  padding-left: 5px;
+}
+
+.row {
+  margin-top: 5px;
+}
+
+.note {
+    margin: 6px 0;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.glyphicon {
+    padding-left: 0px;
+    padding-right: 3px;
+}
+
+.loading {
+    color: #eee;
+}
+
+table.products td {
+    vertical-align: middle !important;
+}
+
+.product-id {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.copyright, .copyright a {
+    color: #aaa;
+}
+
+ol li img {
+    display: inline-block;
+    border: 0;
+    margin: 4px 0 10px 0;
+}
+
+input[type=number] {
+    width: 80px;
+}
+
+p {
+    margin: 6px 0 10px 0;
+}
+
+p.continue {
+    margin-top: 24px;
+    text-align: center;
+}
+
+
+h1 {
+    font-weight: lighter;
+}
+
+h2 {
+    font-weight: lighter;
+}
+
+h3 {
+    font-weight: lighter;
+}
+
+
+.button {
+    border: 1px solid #2692FF;
+    border-radius: 3px;
+    background: #2692FF;
+    height: 64px;
+    width: 224px;
+    color: white;
+    display: inline-block;
+    margin: 8px;
+    padding: 6px 24px 6px 24px;
+    font-size: 14px;
+
+    line-height: 14px;
+    cursor: pointer;
+    opacity: 1;
+}
+
+.main-nav {
+    background: black;
+    overflow: visible;
+    z-index: 1000000!important;
+    position: relative;
+    width: 100%;
+    float: left;
+}
+
+.section {
+    min-height: 300px;
+    border-bottom: 1px solid lightgray;
+    padding: 24px;
+}
+
+.code {
+    padding: 12px 19px;
+    background: #313131;
+    position: absolute;
+    color: white;
+    border-radius: 5px;
+    font-family: courier;
+}
+
+.ads-getting-started-item {
+    width: 180px;
+    padding: 18px 0 18px 72px;
+    margin: 10px 0;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    cursor: pointer;
+
+    background-repeat: no-repeat;
+    background-position: 12px 14px;
+    background-size: 24px 24px;
+}
+
+.ads-getting-started-item:hover {
+    background-color: #2692FF;
+}
