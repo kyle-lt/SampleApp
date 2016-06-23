@@ -1,7 +1,9 @@
 #! /bin/bash
 
 if [ -e /appdynamics/AppServerAgent.zip ]; then
+   echo -n "Adding AppDynamics App Server Agent ..."
    unzip -q /appdynamics/AppServerAgent.zip -d ${CATALINA_HOME}/appagent
+   echo "Done"
 fi
 
 if [ -e ${CATALINA_HOME}/appagent/javaagent.jar ]; then
