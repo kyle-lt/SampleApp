@@ -24,7 +24,7 @@ public class RESTExceptions {
     }
 
     @GET
-    @Path("/slowrequest/{delay}")
+    @Path("/slowrequest")
     public void slowRequest(@PathParam(value="delay") int delay) throws Exception {
         for (int x = 0; x < delay; ++x) Thread.sleep(1000);
     }
@@ -32,9 +32,7 @@ public class RESTExceptions {
     @GET
     @Path("/sqlexception")
     public List<? extends Product> throwSqlException() throws Exception {
-        return manager.createQuery(
-                String.format("SELECT * FROM bad_table", p.getName()), p.getClass())
-                .getResultList();
+        return manager.createQuery("INSERT INTO non_existant_table (wrong_column) VALUES (1)").getResultList();
     }
 
 }
