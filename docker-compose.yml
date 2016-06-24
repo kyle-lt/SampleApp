@@ -20,14 +20,12 @@ services:
     ports: 
       - "3306:3306"
 
-  web:
-    build: ./web
-    container_name: web
-    image: appdynamics/sample-app-web
+  sample-app:
+    build: ./sample-app
+    container_name: sample-app
+    image: appdynamics/sample-app-angular
     links:
       - rest
       - db
-    volumes:
-      - .:/appdynamics
     ports:
       - "3000:3000"
