@@ -186,7 +186,7 @@
           $scope.loadingNew = false;
           $scope.newProduct.newName = "";
           $scope.newProduct.newStock = 0;
-          return setupProductUpdate(data[0]);
+          return setupProductUpdate(data);
         }).error(function() {
           alert('Unable to add new product.');
           return $scope.loadingNew = false;

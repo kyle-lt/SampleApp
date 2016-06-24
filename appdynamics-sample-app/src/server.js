@@ -96,7 +96,7 @@ server.post('/add', function(serverRequest, res) {
       console.log("body: " + chunk);
     });
     response.on('end', function() {
-      res.send('ok');
+      res.send(data);
     })
   });
   httpreq.write(data);
