@@ -61,7 +61,6 @@ function setupStoreFrontCall(method, nodePath, apiRequest) {
 server.use(express.static(__dirname + '/public'));
 setupStoreFrontCall('GET', 'products', '/products');
 setupStoreFrontCall('GET', 'retrieve', '');
-// setupStoreFrontCall('POST', 'add', '');
 setupStoreFrontCall('PUT', 'update', '/put');
 setupStoreFrontCall('DELETE', 'delete', '/del');
 setupStoreFrontCall('GET', 'exceptionJava', '/exception');
@@ -101,12 +100,6 @@ server.post('/add', function(serverRequest, res) {
   });
   httpreq.write(data);
   httpreq.end();
-
-  //
-  // request(data, function (error, apiResponse, body) {
-  //
-  //   response.send(serverRequest.body);
-  // })
 });
 
 server.get('/exception', function (serverRequest, response) {

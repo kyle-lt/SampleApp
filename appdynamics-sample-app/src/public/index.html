@@ -58,7 +58,6 @@
             <li ng-class="tabClass(2)"><a href="#" ng-click="activateTab(2)">Business Transactions</a></li>
             <li ng-class="tabClass(3)"><a href="#" ng-click="activateTab(3)">Slow Responses</a></li>
             <li ng-class="tabClass(4)"><a href="#" ng-click="activateTab(4)">Error Detection</a></li>
-            <li ng-class="tabClass(5)"><a href="#" ng-click="activateTab(5)">Try Your Own App</a></li>
         </ul>
 
         <div ng-switch="activeTabIndex">
@@ -232,30 +231,6 @@
                         <span class="glyphicon glyphicon-chevron-right"></span>
                     </button>
                 </p>
-            </div>
-
-            <div ng-switch-when="5">
-                <h2>Try AppDynamics With Your Own App</h2>
-
-                <p>Now that you've had a taste of what AppDynamics can do, it's time to instrument your own app with AppDynamics. Follow these steps:</p>
-
-                <ol>
-                    <li>Navigate to the <strong>Home</strong> screen of your AppDynamics Controller.</li>
-                    <li>
-                        Click <strong>Agent Download &amp; Install Wizard:</strong><br/>
-                        <img src="img/screenshots/getting_started_link.png" />
-                    </li>
-                    <li>Choose the primary technology used by your application.</li>
-                    <li>Follow the prompts to configure an AppDynamics Agent for your application.</li>
-                    <li>Repeat steps 3 and 4 for each technology used in your application.</li>
-                    <li>After installing the AppDynamics Agents, restart your application and generate load activity on it.</li>
-                    <li>
-                        Navigate to the <strong>Applications</strong> tab of your AppDynamics Controller:<br/>
-                        <img src="img/screenshots/applications.png" />
-                    </li>
-                    <li>Find your application in the list and click it to open the Application Dashboard.</li>
-                </ol>
-
             </div>
         </div>
 
