@@ -1,4 +1,3 @@
-## SampleApp
 Self-Service Sample Application with Java REST server, MySQL database and Node.js frontend.
 
 ### Project Setup
@@ -60,4 +59,4 @@ rest          | INFO: Server startup in 17081 ms
 
 Once your app is running,  you will see this:
 
-![alt tag](https://github.com/Appdynamics/SampleApp/blob/sample-app/src/public/img/sampleapp.png)
+![alt tag](https://github.com/Appdynamics/SampleApp/blob/master/sample-app/src/public/img/sampleapp.png)
