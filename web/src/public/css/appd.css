@@ -115,18 +115,17 @@ h3 {
 }
 
 .section {
-    min-height: 300px;
     border-bottom: 1px solid lightgray;
-    padding: 24px;
+    padding: 36px 0px;
 }
 
 .code {
     padding: 12px 19px;
     background: #313131;
-    position: absolute;
     color: white;
     border-radius: 5px;
     font-family: courier;
+    display: inline-block;
 }
 
 .ads-getting-started-item {
@@ -144,4 +143,13 @@ h3 {
 
 .ads-getting-started-item:hover {
     background-color: #2692FF;
+}
+
+.ads-prerequisites-box {
+    margin-left: 25px;
+    border-radius: 5px;
+    background: lightgray;
+    display: block;
+    padding: 12px 19px;
+    width: 400px;
 }
