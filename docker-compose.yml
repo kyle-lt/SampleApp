@@ -19,3 +19,13 @@ services:
       - MYSQL_ROOT_PASSWORD=***REMOVED***  
     ports: 
       - "3306:3306"
+
+  sample-app:
+    build: ./sample-app
+    container_name: sample-app
+    image: appdynamics/sample-app-angular
+    links:
+      - rest
+      - db
+    ports:
+      - "3000:3000"
