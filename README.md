@@ -1,7 +1,7 @@
 ## SampleApp
 Self-Service Sample Application with Java REST server, MySQL database and Node.js frontend.
 
-### Build Instructions
+### Project Setup
 1. Clone the project
 2. Download AppServerAgent.zip from your controller Getting Started Wizard - Java.
 3. Go to Getting Started Wizard - Node.js, give the app same name as your Java application. Copy the controller configuration to a node-properties.txt and put in project root. For example:
@@ -18,26 +18,13 @@ require("appdynamics").profile({
 });
 ```
 
-### Build and run containers with docker-compose:
+### Build and Run containers with docker-compose:
 ```
-// node-properties.txt
-require("appdynamics").profile({
- controllerHostName: 'xxx.xxx.xx.xx',
- controllerPort: 8090, 
-   accountName: 'your-account-name',
- accountAccessKey: 'your-access-key',
- applicationName: 'SampleApp',
- tierName: 'NodeTier',
- nodeName: 'process' // The controller will automatically append the node name with a unique number
-});
-```
-
-### Build and run containers with docker-compose:
-```
+docker-compose build
 docker-compose up
 ```
 
-## Check Terminal Output
+### Check Terminal Output
 Check for the following output from Tomcat startup:
 ```
 
