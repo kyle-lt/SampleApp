@@ -3,6 +3,8 @@ var app = angular.module('appdsampleapp', []);
 app.controller('SampleAppController', ['$scope', '$http',
       function($scope, $http) {
 
+        $scope.selectedDeployment = '';
+
         $scope.isMobileGettingStarted = false;
         $scope.isAPMGettingStarted = false;
         $scope.isIndex = true;
@@ -25,6 +27,10 @@ app.controller('SampleAppController', ['$scope', '$http',
           $scope.isAPMGettingStarted = !isMobile;
           $scope.isIndex = false;
           $scope.isGettingStartedHome = false;
+        };
+
+        $scope.onSelectDeployment = function(method) {
+          $scope.selectedDeployment = method;
         };
 
         $scope.openUrl = function(url) {
