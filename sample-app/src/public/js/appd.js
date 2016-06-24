@@ -156,7 +156,7 @@
       };
       $scope.slowRequestGet = function() {
         $scope.slowRequest = true;
-        return $http.get('http://192.168.99.100:8080/SampleApp/exceptions/slowrequest', {
+        return $http.get('http://rest:8080/SampleApp/exceptions/slowrequest', {
           params: {
             delay: $scope.delay.request
           }
@@ -239,7 +239,7 @@
       };
       $scope.raiseSqlException = function() {
         $scope.raisingSql = true;
-        return $http.get('http://192.168.99.100:8080/SampleApp/exceptions/sqlexception', {
+        return $http.get('http://rest:8080/SampleApp/exceptions/sqlexception', {
           method: 'GET'
         }).success(function(data) {
           $rootScope.exceptionsSql++;

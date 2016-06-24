@@ -16,7 +16,7 @@ server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 
 function setupStoreFrontCall(method, nodePath, apiRequest) {
   server.get('/' + nodePath, function (serverRequest, response) {
-    var url = "http://192.168.99.100:8080/SampleApp" + apiRequest;
+    var url = "http://rest:8080/SampleApp" + apiRequest;
     // var url = 'http://localhost:' + javaPort + '/rest/appdserver' + apiRequest;
     var query = {};
     for (var key in serverRequest.query) {
@@ -80,7 +80,7 @@ server.post('/add', function(serverRequest, res) {
   console.log(data);
 
   options = {
-    host: '192.168.99.100',
+    host: 'rest',
     port: '8080',
     path: '/SampleApp/products',
     method: 'POST',
@@ -116,7 +116,7 @@ server.get('/exception', function (serverRequest, response) {
   response.send("[]");
 });
 
-server.listen(3000, 'localhost', function () {
+server.listen(3000, '0.0.0.0', function () {
   console.log('Node Server Started');
 });
 server.on('error', function (e) {
