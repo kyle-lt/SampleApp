@@ -4,3 +4,4 @@ jdk-*
 tomcat-users.xml
 target
 AppServerAgent.zip
+node-properties.zip
