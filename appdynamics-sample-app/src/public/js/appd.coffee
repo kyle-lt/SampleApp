@@ -116,7 +116,7 @@ app.controller 'AdminController', [
       request: 5
     $scope.slowRequestGet = ->
       $scope.slowRequest = true
-      $http.get '/slowrequest',
+      $http.get 'http://192.168.99.100:8080/SampleApp/exceptions/slowrequest',
         params:
           delay: $scope.delay.request
       .success ->
@@ -133,8 +133,8 @@ app.controller 'AdminController', [
       if $scope.newProduct.newName == "" or not angular.isNumber $scope.newProduct.newStock
         return
       $scope.loadingNew = true
-      $http.get '/add', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
-        method: 'GET'
+      $http.get 'http://192.168.99.100:8080/SampleApp/products', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
+        method: 'POST'
         params:
           name: $scope.newProduct.newName
           stock: $scope.newProduct.newStock
@@ -159,7 +159,7 @@ app.controller 'AdminController', [
       $rootScope.exceptions
     $scope.raiseException = ->
       $scope.raising = true
-      $http.get '/exception', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
+      $http.get 'http://192.168.99.100:8080/SampleApp/exceptions/', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
         method: 'GET'
       .success (data) ->
         $rootScope.exceptions++
@@ -185,7 +185,7 @@ app.controller 'AdminController', [
       $rootScope.exceptionsSql
     $scope.raiseSqlException = ->
       $scope.raisingSql = true
-      $http.get '/exceptionSql', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
+      $http.get 'http://192.168.99.100:8080/SampleApp/exceptions/sqlexception', #TODO change this to correct path http://192.168.99.100:8080/SampleApp/<PATH>
         method: 'GET'
       .success (data) ->
         $rootScope.exceptionsSql++

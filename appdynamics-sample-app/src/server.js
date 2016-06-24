@@ -1,11 +1,22 @@
 var express = require('express');
 var server = express();
 var request = require('request');
+var bodyParser = require('body-parser')
 var domain = require('domain').create();
+
+var http = require('http');
+
+
+server.use( bodyParser.json() );
+server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+// server.use(express.json());       // to support JSON-encoded bodies
+// server.use(express.urlencoded());
 
 function setupStoreFrontCall(method, nodePath, apiRequest) {
   server.get('/' + nodePath, function (serverRequest, response) {
-    var url = "http://192.168.99.100:8080/SampleApp/" + apiRequest;
+    var url = "http://192.168.99.100:8080/SampleApp" + apiRequest;
     // var url = 'http://localhost:' + javaPort + '/rest/appdserver' + apiRequest;
     var query = {};
     for (var key in serverRequest.query) {
@@ -19,8 +30,10 @@ function setupStoreFrontCall(method, nodePath, apiRequest) {
       url: url
     };
 
+    var fakeData = "";
     if (method == 'POST') {
       data['form'] = query;
+      // fakeData= '[{"id":4,"name":"'+ data['form'].name + '","stock":'+ data['form'].stock +'},';
     } else if (method == 'GET') {
       data['qs'] = query;
     } else {
@@ -39,16 +52,16 @@ function setupStoreFrontCall(method, nodePath, apiRequest) {
       if (apiResponse && body) {
         response.send(body);
       } else {
-        response.send("[]");
+        response.send( fakeData + '{"id":1,"name":"iPad","stock":1},{"id":2,"name":"iPad","stock":100},{"id":3,"name":"cookies","stock":200}]');
       }
     });
   });
 }
 
 server.use(express.static(__dirname + '/public'));
-setupStoreFrontCall('GET', 'retrieveAll', '/all');
+setupStoreFrontCall('GET', 'products', '/products');
 setupStoreFrontCall('GET', 'retrieve', '');
-setupStoreFrontCall('POST', 'add', '');
+// setupStoreFrontCall('POST', 'add', '');
 setupStoreFrontCall('PUT', 'update', '/put');
 setupStoreFrontCall('DELETE', 'delete', '/del');
 setupStoreFrontCall('GET', 'exceptionJava', '/exception');
@@ -56,6 +69,44 @@ setupStoreFrontCall('GET', 'exceptionSql', '/sqlexception');
 setupStoreFrontCall('GET', 'slowrequest', '/slowrequest');
 
 domain.on('error', function (err) {
+});
+
+server.post('/add', function(serverRequest, res) {
+
+
+  data = JSON.stringify(serverRequest.body.params);
+
+
+  console.log(data);
+
+  options = {
+    host: '192.168.99.100',
+    port: '8080',
+    path: '/SampleApp/products',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': '1164'
+    }
+  };
+
+  var httpreq = http.request(options, function (response) {
+    response.setEncoding('utf8');
+    response.on('data', function (chunk) {
+      console.log("body: " + chunk);
+    });
+    response.on('end', function() {
+      res.send('ok');
+    })
+  });
+  httpreq.write(data);
+  httpreq.end();
+
+  //
+  // request(data, function (error, apiResponse, body) {
+  //
+  //   response.send(serverRequest.body);
+  // })
 });
 
 server.get('/exception', function (serverRequest, response) {

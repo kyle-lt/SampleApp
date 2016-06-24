@@ -102,7 +102,7 @@
         };
         return $scope.products.push(product);
       };
-      $http.get('http://192.168.99.100:8080/SampleApp/products').success(function(data) {
+      $http.get('/products').success(function(data) {
         var product;
         for (product in data) {
           if (!data.hasOwnProperty(product)) {
@@ -132,7 +132,7 @@
       recurses = 0;
       performLoopGet = function() {
         activeLoop++;
-        return $http.get('http://192.168.99.100:8080/SampleApp/products').success(function() {
+        return $http.get('/products').success(function() {
           if (activeLoop < recurses) {
             return $timeout(performLoopGet, 500);
           } else {
@@ -156,7 +156,7 @@
       };
       $scope.slowRequestGet = function() {
         $scope.slowRequest = true;
-        return $http.get('/slowrequest', {
+        return $http.get('http://192.168.99.100:8080/SampleApp/exceptions/slowrequest', {
           params: {
             delay: $scope.delay.request
           }
@@ -176,8 +176,8 @@
           return;
         }
         $scope.loadingNew = true;
-        return $http.get('/add', {
-          method: 'GET',
+        return $http.post('/add', {
+          method: 'POST',
           params: {
             name: $scope.newProduct.newName,
             stock: $scope.newProduct.newStock
@@ -239,7 +239,7 @@
       };
       $scope.raiseSqlException = function() {
         $scope.raisingSql = true;
-        return $http.get('/exceptionSql', {
+        return $http.get('http://192.168.99.100:8080/SampleApp/exceptions/sqlexception', {
           method: 'GET'
         }).success(function(data) {
           $rootScope.exceptionsSql++;
