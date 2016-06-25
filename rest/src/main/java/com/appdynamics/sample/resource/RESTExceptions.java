@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
@@ -19,20 +21,27 @@ public class RESTExceptions {
     protected EntityManager manager;
 
     @GET
-    public void throwException() throws Exception {
-        throw new Exception("Forced Exception");
+    public Response throwException() throws Exception {
+
+        try {
+            throw new Exception("Forced Exception");
+        } catch (Exception e) {
+            // Ignore the Exception
+        }
+        return Response.serverError().build();
     }
 
     @GET
     @Path("/slowrequest")
-    public void slowRequest(@PathParam(value="delay") int delay) throws Exception {
+    public Response slowRequest(@PathParam(value="delay") int delay) throws Exception {
         for (int x = 0; x < delay; ++x) Thread.sleep(1000);
+        return Response.ok().build();
     }
 
     @GET
     @Path("/sqlexception")
-    public List<? extends Product> throwSqlException() throws Exception {
-        return manager.createQuery("INSERT INTO non_existant_table (wrong_column) VALUES (1)").getResultList();
+    public Response throwSqlException() throws Exception {
+        manager.createQuery("INSERT INTO non_existant_table (wrong_column) VALUES (1)").getResultList();
+        return Response.serverError().build();
     }
-
 }
