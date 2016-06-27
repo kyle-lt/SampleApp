@@ -23,6 +23,7 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static javax.ws.rs.core.MediaType.*;
 
@@ -35,6 +36,8 @@ public abstract class ResourceCollection<T> {
     @Inject
     protected EntityManager manager;
 
+    @Inject
+    private Logger log;
 
     public ResourceCollection(Class<T> type) {
         this.type = type;
@@ -52,6 +55,7 @@ public abstract class ResourceCollection<T> {
     @Path("{id}")
     @Transactional
     public Response delete(@PathParam("id") int id) {
+        log.info("Deleted product: " + id);
         manager.remove(get(id));
         return Response.ok().build();
     }
