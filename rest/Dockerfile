@@ -33,6 +33,7 @@ RUN curl -O -k https://archive.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERS
     && rm apache-tomcat-*.tar.gz* \
     && mv apache-tomcat-${TOMCAT_MINOR_VERSION} tomcat
 RUN cd ${CATALINA_HOME}/bin;chmod +x *.sh
+RUN rm -rf ${CATALINA_HOME}/webapps/*
 
 # Install Maven
 RUN yum -y install wget

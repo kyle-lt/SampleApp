@@ -13,6 +13,7 @@ server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 function setupStoreFrontCall(method, nodePath, apiRequest) {
   server.get('/' + nodePath, function (serverRequest, response) {
     var url = "http://rest:8080/SampleApp" + apiRequest;
+
     var query = {};
     for (var key in serverRequest.query) {
       if (serverRequest.query.hasOwnProperty(key)) {

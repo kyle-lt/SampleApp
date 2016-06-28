@@ -22,6 +22,7 @@ package com.appdynamics.sample.resource;
 
 import com.appdynamics.sample.model.Product;
 
+import com.google.inject.Inject;
 import com.google.inject.persist.Transactional;
 
 import javax.ws.rs.Consumes;
@@ -32,6 +33,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.logging.Logger;
 
 import static javax.ws.rs.core.MediaType.*;
 
@@ -41,16 +43,20 @@ public class ProductResource extends ResourceCollection<Product> {
         super(Product.class);
     }
 
+    @Inject
+    private Logger log;
+
     @PUT
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     @Path("{id}")
     @Transactional
-    public Product update(@PathParam("id") int id, Product src) {
-        Product product = get(id);
-        product.setId(id);
-        product.setName(src.getName());
-        product.setStock(src.getStock());
+    public Product update(@PathParam("id") int id, Product source) {
+        log.info("Updated product [id]: name = " + source.getName() + ", stock = " + source.getStock());
+        Product target = get(id);
+        target.setId(id);
+        target.setName(source.getName());
+        target.setStock(source.getStock());
         return manager.find(Product.class, id);
     }
 
@@ -58,6 +64,7 @@ public class ProductResource extends ResourceCollection<Product> {
     @Consumes(APPLICATION_JSON)
     @Transactional
     public Response create(Product product) {
+        log.info("Created new product: name = " + product.getName() + ", stock = " + product.getStock());
         manager.persist(product);
         return Response.created(URI.create(product.getId()+"")).build();
     }

@@ -27,5 +27,7 @@ services:
     links:
       - rest
       - db
+    volumes:
+      - .:/appdynamics
     ports:
       - "3000:3000"

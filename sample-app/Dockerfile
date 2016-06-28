@@ -11,8 +11,10 @@ RUN yum install -y git
 RUN yum install -y unzip
 
 RUN mkdir -p  SampleApp
-ADD node_modules /SampleApp/node_modules
 ADD src /SampleApp/src
+RUN cd SampleApp && npm install request
+RUN cd SampleApp && npm install body-parser
+RUN cd SampleApp && npm install express
 
 ADD startup.sh /
 RUN chmod +x /startup.sh
