@@ -59,4 +59,4 @@ rest          | INFO: Server startup in 17081 ms
 
 Once your app is running,  you will see this:
 
-![alt tag](https://github.com/Appdynamics/SampleApp/blob/master/sample-app/src/public/img/sampleapp.png)
+![alt tag](https://github.com/Appdynamics/SampleApp/blob/master/web/src/public/img/sampleapp.png)
