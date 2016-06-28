@@ -20,7 +20,7 @@ services:
     ports: 
       - "3306:3306"
 
-  sample-app:
+  web:
     build: ./web
     container_name: web
     image: appdynamics/sample-app-web
