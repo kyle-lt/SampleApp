@@ -4,7 +4,7 @@ services:
   rest:
     build: ./rest
     container_name: rest
-    image: appdynamics/sample-app
+    image: appdynamics/sample-app-rest
     links:
       - db
     volumes:
@@ -21,9 +21,9 @@ services:
       - "3306:3306"
 
   sample-app:
-    build: ./sample-app
-    container_name: sample-app
-    image: appdynamics/sample-app-angular
+    build: ./web
+    container_name: web
+    image: appdynamics/sample-app-web
     links:
       - rest
       - db
