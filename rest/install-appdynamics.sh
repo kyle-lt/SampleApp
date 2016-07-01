@@ -93,6 +93,8 @@ installMachineAgent() {
   unzip -q ${MACHINE_AGENT_ZIP} -d ${MACHINE_AGENT_HOME} && rm ${MACHINE_AGENT_ZIP}
 }
 
+# Populate environment setup script with AppDynamics agent system properties
+# This file should be included in all agent startup command scripts
 setupAppdEnv() {
   echo "#! /bin/bash" > /env.sh
 
