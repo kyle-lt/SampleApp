@@ -1,0 +1,79 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'angular-route@X.Y.Z' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose cache add [ 'angular-route@X.Y.Z', null ]
+5 verbose cache add name=undefined spec="angular-route@X.Y.Z" args=["angular-route@X.Y.Z",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'angular-route@X.Y.Z',
+6 verbose parsed url   path: 'angular-route@X.Y.Z',
+6 verbose parsed url   href: 'angular-route@X.Y.Z' }
+7 verbose cache add name="angular-route" spec="X.Y.Z" args=["angular-route","X.Y.Z"]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: 'X.Y.Z',
+8 verbose parsed url   path: 'X.Y.Z',
+8 verbose parsed url   href: 'X.Y.Z' }
+9 verbose addNamed [ 'angular-route', 'X.Y.Z' ]
+10 verbose addNamed [ null, null ]
+11 silly lockFile 1946613a-angular-route-X-Y-Z angular-route@X.Y.Z
+12 verbose lock angular-route@X.Y.Z /Users/stephanie.chou/.npm/1946613a-angular-route-X-Y-Z.lock
+13 info addNameTag [ 'angular-route', 'X.Y.Z' ]
+14 verbose request where is /angular-route
+15 verbose request registry https://registry.npmjs.org/
+16 verbose request id bae77b13a96513ab
+17 verbose url raw /angular-route
+18 verbose url resolving [ 'https://registry.npmjs.org/', './angular-route' ]
+19 verbose url resolved https://registry.npmjs.org/angular-route
+20 verbose request where is https://registry.npmjs.org/angular-route
+21 info trying registry request attempt 1 at 12:59:24
+22 http GET https://registry.npmjs.org/angular-route
+23 http 200 https://registry.npmjs.org/angular-route
+24 silly registry.get cb [ 200,
+24 silly registry.get   { server: 'CouchDB/1.6.1 (Erlang OTP/R16B03)',
+24 silly registry.get     etag: '"F4DBHYGHKTFE1FWA5NEE5DF5V"',
+24 silly registry.get     'content-type': 'application/json',
+24 silly registry.get     'content-encoding': 'gzip',
+24 silly registry.get     'cache-control': 'max-age=300',
+24 silly registry.get     'content-length': '9935',
+24 silly registry.get     'accept-ranges': 'bytes',
+24 silly registry.get     date: 'Wed, 29 Jun 2016 19:59:24 GMT',
+24 silly registry.get     via: '1.1 varnish',
+24 silly registry.get     age: '183',
+24 silly registry.get     connection: 'keep-alive',
+24 silly registry.get     'x-served-by': 'cache-lax1435-LAX',
+24 silly registry.get     'x-cache': 'HIT',
+24 silly registry.get     'x-cache-hits': '1',
+24 silly registry.get     'x-timer': 'S1467230364.909399,VS0,VE0',
+24 silly registry.get     vary: 'Accept-Encoding' } ]
+25 silly lockFile 1946613a-angular-route-X-Y-Z angular-route@X.Y.Z
+26 silly lockFile 1946613a-angular-route-X-Y-Z angular-route@X.Y.Z
+27 error notarget No compatible version found: angular-route@'X.Y.Z'
+27 error notarget Valid install targets:
+27 error notarget ["1.2.17-build.163.1","1.3.0-rc.5","1.3.0","1.3.1","1.3.2","1.3.3","1.3.4-build.3588","1.2.27","1.3.4","1.3.5","1.3.6","1.3.7","1.2.28","1.3.8","1.4.0-beta.0","1.3.9","1.3.10","1.4.0-beta.1","1.4.0-beta.2","1.3.11","1.4.0-beta.3","1.3.12","1.3.13","1.4.0-beta.4","1.3.14","1.4.0-beta.5","1.4.0-beta.6","1.3.15","1.4.0-rc.0","1.4.0-rc.1","1.4.0-rc.2","1.4.0","1.3.16","1.4.1","1.4.2","1.3.17","1.4.3","1.4.4","1.3.18","1.4.5","1.3.19","1.4.6","1.5.0-beta.0","1.2.29","1.3.20","1.4.7","1.5.0-beta.2","1.4.8","1.5.0-rc.0","1.5.0-rc.1","1.4.9","1.5.0-rc.2","1.5.0","1.5.1","1.4.10","1.5.2","1.5.3","1.5.5","1.4.11","1.5.6","1.4.12","1.5.7"]
+27 error notarget
+27 error notarget This is most likely not a problem with npm itself.
+27 error notarget In most cases you or one of your dependencies are requesting
+27 error notarget a package version that doesn't exist.
+28 error System Darwin 15.0.0
+29 error command "node" "/usr/local/bin/npm" "install" "angular-route@X.Y.Z"
+30 error cwd /Users/stephanie.chou/sampleApp/SampleApp/sample-app
+31 error node -v v0.10.33
+32 error npm -v 1.4.28
+33 error code ETARGET
+34 verbose exit [ 1, true ]
