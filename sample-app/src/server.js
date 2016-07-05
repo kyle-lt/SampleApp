@@ -10,85 +10,62 @@ server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-function setupStoreFrontCall(method, nodePath, apiRequest) {
-  server.get('/' + nodePath, function (serverRequest, response) {
-    var url = "http://rest:8080/SampleApp" + apiRequest;
-
-    var query = {};
-    for (var key in serverRequest.query) {
-      if (serverRequest.query.hasOwnProperty(key)) {
-        query[key] = serverRequest.query[key];
-      }
-    }
-
-    data = {
-      method: method,
-      url: url
-    };
-
-    if (method == 'POST') {
-      data['form'] = query;
-    } else if (method == 'GET') {
-      data['qs'] = query;
-    } else {
-      if (query.hasOwnProperty("id")) {
-        data.url += "/" + query.id;
-      }
-      if (query.hasOwnProperty("name")) {
-        data.url += "/" + query.name;
-      }
-      if (query.hasOwnProperty("stock")) {
-        data.url += "/" + query.stock;
-      }
-    }
-
-    request(data, function (error, apiResponse, body) {
-      if (apiResponse && body) {
-        response.send(body);
-      } else {
-        response.send('[]');
-      }
-    });
-  });
-}
-
 server.use(express.static(__dirname + '/public'));
-setupStoreFrontCall('GET', 'products', '/products');
-setupStoreFrontCall('PUT', 'update', '/put');
-setupStoreFrontCall('DELETE', 'delete', '/del');
-setupStoreFrontCall('GET', 'exceptionJava', '/exception');
-setupStoreFrontCall('GET', 'exceptionSql', '/sqlexception');
-setupStoreFrontCall('GET', 'slowrequest', '/slowrequest');
 
 domain.on('error', function (err) {
 });
 
-server.post('/add', function(serverRequest, res) {
-  data = JSON.stringify(serverRequest.body.params);
 
-  options = {
-    host: 'rest',
-    port: '8080',
-    path: '/SampleApp/products',
-    method: 'POST',
+//-------- Business Transactions ----------------------
+
+server.get('/products', function(serverRequest, res) {
+  productsCall('GET', '', serverRequest, res)
+});
+
+server.get('/delete', function(serverRequest, res) {
+  params = JSON.stringify(serverRequest.query);
+  productsCall('DELETE', params, serverRequest, res);
+});
+
+
+server.get('/update', function(serverRequest, res) {
+   params = JSON.stringify(serverRequest.query);
+
+  productsCall('PUT', params, serverRequest, res)
+
+});
+
+server.post('/add', function(serverRequest, res) {
+  params = JSON.stringify(serverRequest.body.params);
+  productsCall('POST', params, serverRequest, res);
+});
+
+function productsCall(method, params, serverRequest, res){
+  var id = "";
+  if (method !== "POST" && method !== "GET") {
+    id = serverRequest.query["id"];
+  }
+
+  data = {
+    method: method,
+    url: "http://rest:8080/SampleApp/products/" + id,
+    body: params,
     headers: {
       'Content-Type': 'application/json',
-      'Content-Length': '1164'
+      'Content-Length': params.length
     }
   };
 
-  var httpreq = http.request(options, function (response) {
-    response.setEncoding('utf8');
-    response.on('data', function (chunk) {
-      console.log("body: " + chunk);
-    });
-    response.on('end', function() {
-      res.send(data);
-    })
+  request(data, function(error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send(params);
+    }
   });
-  httpreq.write(data);
-  httpreq.end();
-});
+}
+
+//-------- Exceptions ----------------------
 
 server.get('/exception', function (serverRequest, response) {
   domain.run(function () {
@@ -96,6 +73,42 @@ server.get('/exception', function (serverRequest, response) {
   });
   response.send("[]");
 });
+
+server.get('/exceptions/sql', function(serverRequest, res){
+  request(data, function (error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send('[]');
+    }
+  });
+});
+
+server.get('/exceptions/java', function(serverRequest, res){
+  request(data, function (error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send('[]');
+    }
+  });
+});
+
+server.get('/exceptions/slow', function(serverRequest, res) {
+  data = {
+    method: "GET",
+    url: "http://rest:8080/SampleApp/exceptions/slow/"+serverRequest.query.request
+  };
+
+  request(data, function (error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send('[]');
+    }
+  });
+});
+
 
 server.listen(3000, '0.0.0.0', function () {
   console.log('Node Server Started');
