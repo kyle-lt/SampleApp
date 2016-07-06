@@ -28,6 +28,7 @@ import com.google.inject.persist.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -54,7 +55,6 @@ public class ProductResource extends ResourceCollection<Product> {
     public Product update(@PathParam("id") int id, Product source) {
         log.info("Updated product [id]: name = " + source.getName() + ", stock = " + source.getStock());
         Product target = get(id);
-        target.setId(id);
         target.setName(source.getName());
         target.setStock(source.getStock());
         return manager.find(Product.class, id);
