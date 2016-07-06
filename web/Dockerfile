@@ -8,17 +8,18 @@ RUN cd /usr/local
 RUN tar --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz
 RUN yum install -y vim
 RUN yum install -y git
-RUN yum install -y unzip rsyslog
+RUN yum install -y unzip
 
 RUN mkdir -p  SampleApp
 ADD src /SampleApp/src
 RUN cd SampleApp && npm install request
 RUN cd SampleApp && npm install body-parser
 RUN cd SampleApp && npm install express
+RUN cd SampleApp && npm install angular-route@1.3.14
 
 ADD startup.sh /
 RUN chmod +x /startup.sh
 
-CMD tail -f /var/log/messages
+CMD /startup.sh
 
 EXPOSE 3000
