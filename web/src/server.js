@@ -1,6 +1,7 @@
 var express = require('express');
 var server = express();
 var request = require('request');
+var bodyParser = require('body-parser');
 var domain = require('domain').create();
 var http = require('http');
 
@@ -9,10 +10,10 @@ server.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 
-server.use(express.static(__dirname + '/public'));
-
 domain.on('error', function (err) {
 });
+
+server.use(express.static(__dirname + '/public'));
 
 
 //-------- Business Transactions ----------------------

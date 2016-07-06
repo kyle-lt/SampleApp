@@ -28,6 +28,6 @@ services:
       - rest
       - db
     volumes:
-      - .;/appdynamics
+      - .:/appdynamics
     ports:
       - "3000:3000"
