@@ -7,8 +7,6 @@ services:
     image: appdynamics/sample-app-rest
     links:
       - db
-    volumes:
-      - .:/appdynamics
     ports: 
       - "8080:8080"
 
@@ -27,7 +25,5 @@ services:
     links:
       - rest
       - db
-    volumes:
-      - .:/appdynamics
     ports:
       - "3000:3000"

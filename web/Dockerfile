@@ -5,20 +5,25 @@ MAINTAINER alana.anderson@appdynamics.com
 RUN yum install -y wget
 RUN wget --no-check-certificate https://nodejs.org/dist/v4.2.1/node-v4.2.1-linux-x64.tar.gz
 RUN cd /usr/local
-RUN tar --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz
-RUN yum install -y vim
-RUN yum install -y git
-RUN yum install -y unzip
+RUN tar --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz && rm node-v4.2.1-linux-x64.tar.gz
+
+# Install OS packages
+RUN yum install -y git unzip rsyslog
 
 RUN mkdir -p  SampleApp
 ADD src /SampleApp/src
-RUN cd SampleApp && npm install request
-RUN cd SampleApp && npm install body-parser
-RUN cd SampleApp && npm install express
+ADD package.json /SampleApp/package.json
+RUN cd SampleApp && npm install
 
-ADD startup.sh /
-RUN chmod +x /startup.sh
+ADD install-appdynamics.sh /usr/local/bin/install-appdynamics
+#ADD start-node.sh /usr/local/bin/start-node
+ADD start.sh /usr/local/bin/start
 
-CMD /startup.sh
+RUN chmod +x /usr/local/bin/install-appdynamics
+#RUN chmod +x /usr/local/bin/start-node	
+RUN chmod +x /usr/local/bin/start
+
+# Tail syslog to keep container running
+CMD tail -f /var/log/messages
 
 EXPOSE 3000
