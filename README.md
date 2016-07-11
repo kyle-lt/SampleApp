@@ -4,20 +4,13 @@ Self-Service Sample Application with Java REST server, MySQL database and Node.j
 
 1. Clone the project
 
-2. Navigate to project root folder, then build and run the containers in the background
-```
-docker-compose up -d
-```
-
-3. Now your containers are started. Check your running containers by `docker ps`. 
+1. Navigate to project root folder, then build and run the containers in the background 
+	```docker-compose up -d```
+1. Now your containers are started. Check your running containers by command `docker ps`. 
 * Instrument Java, DB and Machine agents then start Java REST API
-``` 
-docker exec -it rest install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec rest start-all
-```
+	``` docker exec -it rest install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec rest start-all```
 * Instrument Node.js agent and start web service
-``` 
-docker exec -it web install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec -d web start
-```
+	``` docker exec -it web install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec -d web start```
 
 ### See App Running
 * Java app is running on [192.168.99.100:8080/SampleApp/products](http://192.168.99.100:8080/SampleApp/products)
