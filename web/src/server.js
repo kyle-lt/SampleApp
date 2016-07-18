@@ -103,7 +103,7 @@ server.get('/exceptions/java', function(serverRequest, res){
     method: "GET",
     url: "http://rest:8080/SampleApp/exceptions/java"
   };
-  
+
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
       res.send(body);
