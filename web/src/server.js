@@ -84,6 +84,11 @@ server.get('/exception', function (serverRequest, response) {
 });
 
 server.get('/exceptions/sql', function(serverRequest, res){
+  data = {
+    method: "GET",
+    url: "http://rest:8080/SampleApp/exceptions/sql"
+  };
+  
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
       res.send(body);
@@ -94,6 +99,11 @@ server.get('/exceptions/sql', function(serverRequest, res){
 });
 
 server.get('/exceptions/java', function(serverRequest, res){
+  data = {
+    method: "GET",
+    url: "http://rest:8080/SampleApp/exceptions/java"
+  };
+  
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
       res.send(body);
