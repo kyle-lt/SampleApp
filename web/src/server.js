@@ -1,12 +1,3 @@
-require("appdynamics").profile({
- controllerHostName: 'APPD_CONTROLLER',
- controllerPort: 'APPD_PORT', 
-   accountName: 'ACCOUNT_NAME',
- accountAccessKey: 'ACCESS_KEY',
- applicationName: 'APPD_APP_NAME',
- tierName: 'APPD_TIER_NAME',
- nodeName: 'APPD_NODE_NAME' // The controller will automatically append the node name with a unique number
-});
 
 var express = require('express');
 var server = express();
