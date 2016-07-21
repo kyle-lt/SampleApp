@@ -39,5 +39,6 @@ env_config() {
 	cat /node-properties.txt /SampleApp/src/server.js > /SampleApp/src/_server.js && mv /SampleApp/src/_server.js /SampleApp/src/server.js
 }
 
+installAppd
 checkSSL
 env_config
