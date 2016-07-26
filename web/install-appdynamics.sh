@@ -16,7 +16,7 @@ installAppd() {
 }
 
 checkSSL() {
-  if [ "$APPD_PORT" = "443" ]; then
+  if [ "$APPD_PORT" == "443" ]; then
     echo "Turning on SSL"
     APPD_SSL="true"
   else
@@ -28,7 +28,7 @@ env_config() {
 	echo "require(\"appdynamics\").profile({
 		controllerHostName: '${APPD_CONTROLLER}',
 		controllerPort: '${APPD_PORT}', 
-		controllerSslEnabled: '${APPD_SSL}', 
+		controllerSslEnabled: ${APPD_SSL}, 
 		accountName: '${APPD_ACCOUNT_NAME}',
 		accountAccessKey: '${APPD_ACCESS_KEY}',
 		applicationName: '${APPD_APP_NAME}',

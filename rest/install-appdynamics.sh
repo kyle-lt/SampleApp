@@ -34,7 +34,7 @@ APPD_TIER_NAME="RestServices"
 APPD_NODE_NAME="RestNode"
 
 checkSSL() {
-  if [ "$APPD_PORT" = "443" ]; then
+  if [ "$APPD_PORT" == "443" ]; then
     echo "Turning on SSL"
     APPD_SSL="true"
   else
