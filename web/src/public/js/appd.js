@@ -108,31 +108,31 @@
           if ($scope.selectedProduct.name === "" || !angular.isNumber($scope.selectedProduct.stock)) {
             return;
           }
-          useStock = decrement ? $scope.selectedProduct.stock - 1 : $scope.selectedProduct.stock;
+          useStock = decrement ? this.stock - 1 : this.stock;
           return $http.get('/update', {
             method: 'GET',
             params: {
-              id: $scope.selectedProduct.id,
-              name: $scope.selectedProduct.name,
+              id: this.id,
+              name: this.name,
               stock: useStock < 0 ? 0 : useStock
             }
           }).success(function(returnProduct) {
             $scope.getProducts();
-            $scope.selectedProduct.stock = parseInt(returnProduct.stock, 10);
+            this.stock = parseInt(returnProduct.stock, 10);
           }.bind(this)).error(function() {
             alert('Unable to update the product.');
-            return $scope.selectedProduct.loading = false;
+            return this.loading = false;
           });
         };
         $scope.selectedProduct["delete"] = function() {
           return $http.get('/delete', {
             method: 'GET',
             params: {
-              id: $scope.selectedProduct.id
+              id: this.id
             }
           }).success(function() {
             var lookup, results;
-            $scope.selectedProduct.loading = false;
+            this.loading = false;
             results = [];
             for (lookup in $scope.products) {
               if (!$scope.products.hasOwnProperty(lookup)) {
