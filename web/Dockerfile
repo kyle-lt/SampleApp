@@ -16,10 +16,10 @@ ADD package.json /SampleApp/package.json
 RUN cd SampleApp && npm install
 
 ADD install-appdynamics.sh /usr/local/bin/install-appdynamics
-ADD start.sh /usr/local/bin/start
+ADD start-all.sh /usr/local/bin/start-all
 
 RUN chmod +x /usr/local/bin/install-appdynamics
-RUN chmod +x /usr/local/bin/start
+RUN chmod +x /usr/local/bin/start-all
 
 # Tail syslog to keep container running
 CMD tail -f /var/log/messages
