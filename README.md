@@ -10,7 +10,7 @@ Self-Service Sample Application with Java REST server, MySQL database and Node.j
 * Instrument Java, DB and Machine agents then start Java REST API
 	``` docker exec -it rest install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec rest start-all```
 * Instrument Node.js agent and start web service
-	``` docker exec -it web install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec web start```
+	``` docker exec -it web install-appdynamics <controller-url> <controller-port> <account-name> <access-key>; docker exec web start-all```
 
 ### See App Running
 * Java app is running on [192.168.99.100:8080/SampleApp/products](http://192.168.99.100:8080/SampleApp/products)
