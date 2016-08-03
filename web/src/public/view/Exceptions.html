@@ -1,0 +1,22 @@
+<h2>Error Detection</h2>
+
+<ol>
+    <li>
+        Click these buttons to raise exceptions on the Node, Java, and database servers:<br/>
+        <p>
+            <button type="button" class="btn btn-danger btn-sm" ng-click="raiseNodeException()" ng-disabled="raisingNode">Raise Node Exception<span ng-show="exceptionsNode > 0"> ({{getNodeExceptions()}})</span></button>
+
+            <button type="button" class="btn btn-danger btn-sm" ng-click="raiseJavaException()" ng-disabled="raisingJava">Raise Java Exception<span ng-show="exceptionsJava > 0"> ({{getJavaExceptions()}})</span></button>
+
+            <button type="button" class="btn btn-danger btn-sm" ng-click="raiseSqlException()" ng-disabled="raisingSql">Raise Database Exception<span ng-show="exceptionsSql > 0"> ({{getSqlExceptions()}})</span></button>
+        </p>
+    <li>
+        In your AppDynamics Controller, choose <strong>Troubleshoot</strong> from the left sidebar:<br/>
+        <img src="img/screenshots/troubleshoot_link.png" />
+    </li>
+    <li>
+        Under Troubleshooting, choose <strong>Errors:</strong></br>
+        <img src="img/screenshots/errors_link.png" />
+    </li>
+    <li>See details about the errors in the displayed table and graph.</li>
+</ol>

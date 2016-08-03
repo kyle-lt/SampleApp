@@ -1,0 +1,21 @@
+<h2>Slow Responses</h2>
+
+<ol>
+    <li>
+        To simulate a slow response, enter a response delay time <strong>(at least 3 seconds)</strong> and then click Generate Slow Response.<br/>
+        <p>
+            Slow Response Time (sec):
+            <input type="number" ng-model="delay.request" />
+            <button type="button" class="btn btn-danger btn-sm" ng-click="slowRequestGet()" ng-disabled="slowRequest">Generate Slow Response</button>
+        </p>
+    </li>
+    <li>
+        In your AppDynamics Controller, choose <strong>Troubleshoot</strong> from the left sidebar:<br/>
+        <img src="img/screenshots/troubleshoot_link.png" />
+    </li>
+    <li>
+        Under Troubleshooting, choose <strong>Slow Response Times:</strong></br>
+        <img src="img/screenshots/slow_response_times_link.png" />
+    </li>
+    <li>See details about the slow responses in the displayed table.</li>
+</ol>

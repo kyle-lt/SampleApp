@@ -110,11 +110,12 @@ server.get('/exceptions/slow', function(serverRequest, res) {
     url: "http://rest:8080/SampleApp/exceptions/slow/"+serverRequest.query.request
   };
 
+
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
-      res.send(body);
+      setTimeout(res.send(body), serverRequest.query.request);
     } else {
-      res.send('[]');
+      setTimeout(res.send('[]'), serverRequest.query.request);
     }
   });
 });
