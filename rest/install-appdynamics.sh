@@ -4,7 +4,7 @@ APPD_LOGIN_URL=https://login.appdynamics.com/sso/login/
 VERSION=4.2.2.2
 APPD_TEMP_DIR=.appd
 
-# Beta Portal 
+# Portal Download 
 APPD_DOWNLOAD_URL=https://aperture.appdynamics.com/download/prox/download-file
 APPD_AGENTS=(
   "sun-jvm/${VERSION}/AppServerAgent-${VERSION}.zip"
@@ -12,22 +12,10 @@ APPD_AGENTS=(
   "machine/${VERSION}/MachineAgent-${VERSION}.zip"
 )
 
-# Public Portal
-#APPD_DOWNLOAD_URL=https://download.appdynamics.com/onpremise/public/latest
-#APPD_AGENTS=(
-# "AppServerAgent.zip"
-# "dbagent.zip"
-# "MachineAgent.zip"
-#)
-
 APP_AGENT_ZIP=$(basename ${APPD_AGENTS[0]%-*}).zip
 DB_AGENT_ZIP=$(basename ${APPD_AGENTS[1]%-*}).zip
 MACHINE_AGENT_ZIP=$(basename ${APPD_AGENTS[2]%-*}).zip
 
-APPD_CONTROLLER=$1
-APPD_PORT=$2
-APPD_ACCOUNT_NAME=$3
-APPD_ACCESS_KEY=$4
 APPD_SSL="false"
 APPD_APP_NAME="SampleApp"
 APPD_TIER_NAME="RestServices"
@@ -43,15 +31,24 @@ checkSSL() {
 }
 
 downloadInstallers() {
-  echo "Please enter your AppDynamics Portal login to download Agents"
-  echo -n "Email ID/UserName: "
-  read USER_NAME
+  if [ -z "${PORTAL_USERNAME}" ]; then
+    echo "Please enter your AppDynamics Portal login to download Agents"
+    echo -n "Email ID/UserName: "
+    read USER_NAME
+  else
+    USER_NAME=${PORTAL_USERNAME}
+    echo "Downloading Agents from AppDynamics Portal with User: ${USER_NAME}"
+  fi
 
-  stty -echo
-  echo -n "Password: "
-  read PASSWORD
-  stty echo
-  echo
+  if [ -z "${PORTAL_PASSWORD}" ]; then
+    stty -echo
+    echo -n "Password: "
+    read PASSWORD
+    stty echo
+    echo
+  else
+    PASSWORD=${PORTAL_PASSWORD}
+  fi
 
   mkdir -p ${APPD_TEMP_DIR}
 
@@ -85,6 +82,7 @@ downloadInstallers() {
 
   else
     echo "Username or Password missing"
+    exit
   fi
 }
 
@@ -119,10 +117,53 @@ setupAppdEnv() {
   echo "AppDynamics Agent configuration saved to /env.sh"
 }
 
+showUsage() {
+  echo "Usage: docker exec -it rest install-appdynamics"
+  echo "OR:    docker exec -it rest install-appdynamics <controller-url> <controller-port> <account-name> <access-key>"
+  echo "Commandline properties override environment variables from docker-compose.yml"
+}
+
 cleanup() {
   rm -rf .appd
 } 
 trap cleanup EXIT
+
+if [ $# -eq 0 ]; then
+  echo "Using Controller properties from docker-compose.yml"
+elif [ $# -ne 4 ]; then 
+  showUsage
+  exit 1
+else
+  echo "Using Controller properties:"
+  echo " Controller URL = $1"
+  echo " Controller Port = $2"
+  echo " Account Name = $3"
+  echo " Access Key = $4"
+fi
+
+if [ -z "${CONTROLLER_URL}" ]; then
+  APPD_CONTROLLER=$1
+else
+  APPD_CONTROLLER=${CONTROLLER_URL}
+fi
+
+if [ -z "${CONTROLLER_PORT}" ]; then
+  APPD_PORT=$2
+else
+  APPD_PORT=${CONTROLLER_PORT}
+fi
+
+if [ -z "${CONTROLLER_ACCOUNT_NAME}" ]; then
+  APPD_ACCOUNT_NAME=$3
+else
+  APPD_ACCOUNT_NAME=${CONTROLLER_ACCOUNT_NAME}
+fi
+
+if [ -z "${CONTROLLER_ACCESS_KEY}" ]; then
+  APPD_ACCESS_KEY=$4
+else
+  APPD_ACCESS_KEY=${CONTROLLER_ACCESS_KEY}
+fi
 
 downloadInstallers; echo
 checkSSL

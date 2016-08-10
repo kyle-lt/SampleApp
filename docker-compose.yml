@@ -5,6 +5,13 @@ services:
     build: ./rest
     container_name: rest
     image: appdynamics/sample-app-rest
+    environment:
+      - CONTROLLER_URL=
+      - CONTROLLER_PORT=
+      - CONTROLLER_ACCOUNT_NAME=
+      - CONTROLLER_ACCESS_KEY=
+      - PORTAL_USERNAME=
+      - PORTAL_PASSWORD=
     links:
       - db
     ports: 
@@ -22,6 +29,8 @@ services:
     build: ./web
     container_name: web
     image: appdynamics/sample-app-web
+    environment:
+      - CONTROLLER_URL=
     links:
       - rest
       - db
