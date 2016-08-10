@@ -7,15 +7,12 @@
  
     app.controller('SlowResponseController', ['$scope', '$http', function ($scope, $http) {
         $scope.slowRequest = false;
-        $scope.delay = {
-            request: 5
-        };
 
-        $scope.slowRequestGet = function() {
+        $scope.slowRequestGet = function(delay) {
             $scope.slowRequest = true;
             return $http.get('/exceptions/slow', {
                 params: {
-                    delay: $scope.delay.request
+                    delay: delay
                 }
             }).finally(function () {
                 return $scope.slowRequest = false;

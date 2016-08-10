@@ -1,21 +1,28 @@
-<h2>Slow Responses</h2>
+<div ng-controller="SlowResponseController" class="section">
+    <div class="left">
+        <h4>Slow Responses</h4>
+        <div class="content">
+            <p>Click these buttons to simulate slow transactions, and observe how slow transactions affect the overall response times and user experience counts.</p>
+        </div>
 
-<ol>
-    <li>
-        To simulate a slow response, enter a response delay time <strong>(at least 3 seconds)</strong> and then click Generate Slow Response.<br/>
-        <p>
-            Slow Response Time (sec):
-            <input type="number" ng-model="delay.request" />
-            <button type="button" class="btn btn-danger btn-sm" ng-click="slowRequestGet()" ng-disabled="slowRequest">Generate Slow Response</button>
-        </p>
-    </li>
-    <li>
-        In your AppDynamics Controller, choose <strong>Troubleshoot</strong> from the left sidebar:<br/>
-        <img src="img/screenshots/troubleshoot_link.png" />
-    </li>
-    <li>
-        Under Troubleshooting, choose <strong>Slow Response Times:</strong></br>
-        <img src="img/screenshots/slow_response_times_link.png" />
-    </li>
-    <li>See details about the slow responses in the displayed table.</li>
-</ol>
+        <br>
+
+        <button type="button" class="gray" ng-click="slowRequestGet(10)">10 second transaction</button>
+        <button type="button" class="gray" ng-click="slowRequestGet(30)">30 second transaction</button>
+        <button type="button" class="gray" ng-click="slowRequestGet(60)">60 second transaction</button>
+
+    </div>
+
+    <div class="right">
+        <div class="gray-text-box">
+            <h5>Slow Response Times</h5>
+
+            <p>AppDynamics provides default thresholds against which it compares the performance of every business transaction. Each transaction is classified into what are called a user experience: normal, slow, very slow, stall or error transaction.</p>
+
+            <br>
+
+            <a> View Slow Response Times</a>
+        </div>
+    </div>
+
+</div>

@@ -6,18 +6,11 @@
                 templateUrl : 'view/home.html',
                 controller : 'AdminController'
             });
-        $routeProvider.when('/businessTransactions', {
-                templateUrl : 'view/BusinessTransaction.html',
-                controller : 'BusinessTransactionController'
-            });
-        $routeProvider.when('/exceptions', {
-            templateUrl : 'view/Exceptions.html',
-            controller : 'ExceptionsController'
+
+        $routeProvider.when('/fruitStand', {
+            templateUrl : 'view/fruitStand.html'
         });
-        $routeProvider.when('/slowResponse', {
-            templateUrl : 'view/SlowResponse.html',
-            controller : 'SlowResponseController'
-        });
+
         $routeProvider.otherwise({
                 redirectTo: '/'
             });
@@ -65,6 +58,7 @@
     app.controller('AdminController', [
         '$scope', '$http', '$location', function($scope, $http, $location) {
             $scope.ready = false;
+            $scope.controllerUrl = '';
 
             $scope.init = function () {
                 $scope.ready = true;
@@ -73,6 +67,12 @@
             $scope.navigateTo = function(path) {
                 $location.path("/" + path);
             };
+
+            $scope.openController = function (path) {
+                var url = this.controllerUrl + path;
+                window.open( url, "AppDynamicsController");
+            };
+
 
             $scope.init();
 

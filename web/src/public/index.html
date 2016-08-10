@@ -23,21 +23,24 @@
     <![endif]-->
 </head>
 
-<body ng-controller="AdminController">
+<body ng-controller="AdminController" style="padding-top: 0px;">
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
+<nav>
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <span class="navbar-brand">AppDynamics Sample App</span>
-        </div>
+        <table style="margin-left: 13px; margin-top: -3px;">
+            <tr>
+                <td>
+                    <img src="img/AppDynamicsLogo_white.svg" style="display: inline-block; height: 24px;">
+                </td>
+                <td>
+                    <p style="color: #fff; display: inline-block; font-family: 'Helvetica Neue'; font-weight: 200; font-size: 18px; padding-right: 4px;">|</p>
+                </td>
+                <td>
+                    <p style="color: #fff; display: inline-block; font-family: 'Helvetica Neue'; font-weight: 200; font-size: 18px; padding-top: 4px;"> SAMPLE APP</p>
+                </td>
+            </tr>
+        </table>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -47,27 +50,12 @@
             </ul>
         </div>
         <!-- /.navbar-collapse -->
-    </div>
     <!-- /.container -->
 </nav>
 
 <!-- Page Content -->
-<div class="container" ng-show="ready">
-
-    <div ng-include="'./view/NavigationBar.html'"></div>
-
-    <div ng-view></div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p class="copyright">Copyright &copy; 2009 - 2015 AppDynamics. All Rights Reserved. Twitter Bootstrap icons from <a target="_blank" href="http://GLYPHICONS.com/">GLYPHICONS.com</a>.</p>
-            </div>
-        </div>
-    </footer>
-
-
+<div ng-show="ready" style="width: 100%;">
+    <div ng-view style="margin: 40px 58px;"></div>
 </div>
 <!-- /.container -->
 

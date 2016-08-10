@@ -1,20 +1,47 @@
 <div>
-    <h2>Welcome to the AppDynamics Sample App</h2>
 
-    <p>This simple single-page web application sends requests to a Node HTTP server, which connects to an Apache Tomcat backend server, which in turn connects to a MySQL database.</p>
+    <div class="left">
+        <h4>About the AppDynamics Sample App</h4>
 
-    <p>Please follow these steps to view app activity in your AppDynamics Controller:</p>
+        <div class="content">
+            <p>This simple single-page web application sends requests to a Node HTTP server, which connects to an Apache Tomcat backend server, which in turn connects to a MySQL database.</p>
 
-    <ol>
-        <li>
-            In your AppDynamics Controller, navigate to the <strong>Applications</strong> tab:</br>
-            <img src="img/screenshots/applications.png" />
-        </li>
-        <li>Find and click the link for the <strong>AppDynamics Sample App.</strong></li>
-        <li>Allow up to three minutes for new app activity to be received and processed.</li>
-        <li>
-            After data processing, you should see the application flowmap:<br/>
-            <img src="img/screenshots/flowmap.png" />
-        </li>
-    </ol>
+            <p>An <span class="keyword">AppDynamics agent</span> has been installed and is monitoring each tier. AppDynamics Agents send application data to the <span class="keyword">Controller</span>, which assembles, processes, and presents the data.</p>
+
+            <p> In about two minutes after loading this page, the agents will register and you should begin seeing some activity in the <span class="keyword">Controller UI</span>.
+            </p>
+        </div>
+
+        <img style="margin-top: 36px;" src="img/screenshots/flowmap.png" />
+
+        <br>
+
+        <button type="button" class="blue" style="margin-top: 50px; width:256px; height: 36px;" ng-click="navigateTo('fruitStand')">Start using the sample app</button>
+    </div>
+
+    <div class="right">
+        <div class="gray-text-box">
+            <h5>Tiers</h5>
+
+            <p>The Tier list in the Controller UI lets you view an organize the tiers in your business application and the monitored nodes within each tier.</p>
+
+            <br>
+
+            <a>View the list of monitored Sample App tiers</a>
+        </div>
+
+        <br>
+
+
+        <div class="gray-text-box">
+            <h5>Application Flow Map</h5>
+
+            <p>Flow maps present a dynamic, visual representation of the components and activities of your monitored application environment. flow maps show the tiers, nodes, message queues and databases in the environment, and the business transactions that flow through them.</p>
+
+            <br>
+
+            <a>View the flow map for the sample app</a>
+        </div>
+    </div>
+
 </div>

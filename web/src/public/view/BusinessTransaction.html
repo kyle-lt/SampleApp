@@ -1,66 +1,61 @@
-<div>
-    <h2>Business Transactions</h2>
+<div ng-controller="BusinessTransactionController" class="section">
+    <div class="left">
+        <h4>Normal Business Transactions</h4>
 
-    <p>Below is an e-commerce inventory management simulation. Click the buttons below to add or remove products.</p>
+        <div class="content">
+            <p>
+                Click the buttons to reset the inventory, and to add or remove products. Observe what business transactions are created by agents and how the calls per minute and average response times are shown.
+            </p>
+        </div>
 
-    <table class="table table-condensed table-striped products">
-        <thead>
-        <tr>
-            <th>
-                &nbsp;
-            </th>
-            <th>
-                Product Name
-            </th>
-            <th>
-                Inventory Count
-            </th>
-            <th>
-                &nbsp;
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr data-ng-repeat="product in products">
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                <input type="text" ng-model="product.name" />
-            </td>
-            <td>
-                <input type="number" ng-model="product.stock" />
-            </td>
-            <td>
-                <button type="button" ng-click="product.save()" ng-disabled="product.loading" class="btn btn-sm btn-primary" alt="Save">
-                    <span class="glyphicon glyphicon-ok"></span> Save Product
-                </button>
-                <button type="button" ng-click="product.save(true)" ng-disabled="product.loading" class="btn btn-sm btn-success" alt="Save">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Buy Product
-                </button>
-                <button type="button" ng-click="product.delete()" ng-disabled="product.loading" class="btn btn-sm btn-danger" alt="Delete">
-                    <span class="glyphicon glyphicon-trash"></span> Delete Product
-                </button>
-            </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr class="alert-info">
-            <td class="product-id">
-                Add New
-            </td>
-            <td>
-                <input type="text" ng-model="newProduct.newName" />
-            </td>
-            <td>
-                <input type="number" ng-model="newProduct.newStock" />
-            </td>
-            <td>
-                <button type="button" class="btn btn-sm btn-primary" ng-click="addNew()" ng-disable="loadingNew"><span class="glyphicon glyphicon-plus"></span> Save New Product</button>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
+        <table class="products">
+            <thead>
+            <tr>
+                <th>
+                    <p>Item</p>
+                </th>
+                <th class="quantity">
+                    <p>Quantity</p>
+                </th>
+                <th>
+                    &nbsp;
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="product in products">
+                <td>
+                    <p>{{product.name}}</p>
+                </td>
+                <td class="quantity">
+                    <p style="margin-top: 9px;">{{product.stock}}</p>
+                </td>
+                <td>
+                    <button type="button" ng-click="product.save(true)" ng-disabled="product.loading" class="gray"> Add One
+                    </button>
 
-    <p>Observe the resulting app activity and business transactions in your AppDynamics Controller.</p>
+                    <button type="button" ng-click="product.save(true)" ng-disabled="product.loading" class="gray"> Remove One
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="gray" style="margin-top: 23px; margin-bottom: 40px;" ng-click="reset()"></span> Reset Fruit Stand</button>
+    </div>
+
+    <div class="right">
+        <div class="gray-text-box">
+            <h5>What is a Business Transaction</h5>
+
+            <p>A business transaction represents the end-to-end processing path used to fulfill a service request in the monitored environment.
+            When you connect agents to a Controller, the Controller automatically generates a list of business transactions based on the activity that the agents detect.</p>
+
+            <br>
+
+            <a ng-click="">View Business Transaction List</a>
+        </div>
+    </div>
+
+
 </div>

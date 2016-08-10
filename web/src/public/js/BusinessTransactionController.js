@@ -52,7 +52,32 @@
         $scope.selectedProduct = null;
 
         $scope.init = function() {
-            $scope.getProducts();
+            $scope.getProducts().then(function () {
+                // if there are no products then prepopulate with set things
+                if (this.products.length < 1) {
+                    this.setDefaultProducts();
+                }
+            }.bind(this));
+        };
+
+        $scope.setDefaultProducts = function () {
+            var products = ["oranges",
+                "apples",
+                "bananas",
+                "melons"];
+
+            var productCount = 100;
+
+            for (var i = 0; i < products.length; i++) {
+                this.newProduct = {
+                    newName: products[i],
+                    newStock: productCount
+                };
+
+                this.addNew();
+            }
+
+            this.getProducts();
         };
 
         var setupProductUpdate = function(product) {
@@ -104,7 +129,7 @@
 
         $scope.getProducts = function () {
             $scope.products = [];
-            BusinessTransactionService.getProducts().success(function (data) {
+            return BusinessTransactionService.getProducts().success(function (data) {
                 var product;
                 for (product in data) {
                     if (!data.hasOwnProperty(product)) {
@@ -125,7 +150,6 @@
             $scope.loadingNew = true;
             
             BusinessTransactionService.add($scope.newProduct.newName, $scope.newProduct.newStock).success(function (data) {
-                $scope.getProducts();
                 setupProductUpdate(data);
             }).error(function () {
                 alert('Unable to add new product.');
@@ -135,6 +159,13 @@
                 $scope.newProduct.newName = "";
                 $scope.newProduct.newStock = 0;
             });
+        };
+
+        $scope.reset = function () {
+            for(var i = 0; i < this.products.length; i++){
+                this.products[i].stock = 100;
+                this.products[i].save();
+            }
         };
 
         $scope.validateProduct = function (name, stock) {

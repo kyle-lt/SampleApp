@@ -113,9 +113,9 @@ server.get('/exceptions/slow', function(serverRequest, res) {
 
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
-      setTimeout(res.send(body), serverRequest.query.request);
+      res.send(body);
     } else {
-      setTimeout(res.send('[]'), serverRequest.query.request);
+      res.send('[]');
     }
   });
 });
