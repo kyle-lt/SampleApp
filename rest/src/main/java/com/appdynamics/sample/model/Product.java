@@ -27,7 +27,7 @@ import javax.persistence.*;
 public class Product {
     @JsonProperty
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
 
     @JsonProperty
