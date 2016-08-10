@@ -31,6 +31,9 @@ services:
     image: appdynamics/sample-app-web
     environment:
       - CONTROLLER_URL=
+      - CONTROLLER_PORT=
+      - CONTROLLER_ACCOUNT_NAME=
+      - CONTROLLER_ACCESS_KEY=
     links:
       - rest
       - db

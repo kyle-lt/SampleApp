@@ -130,40 +130,25 @@ trap cleanup EXIT
 
 if [ $# -eq 0 ]; then
   echo "Using Controller properties from docker-compose.yml"
-elif [ $# -ne 4 ]; then 
+  APPD_CONTROLLER=${CONTROLLER_URL}
+  APPD_PORT=${CONTROLLER_PORT}
+  APPD_ACCOUNT_NAME=${CONTROLLER_ACCOUNT_NAME}
+  APPD_ACCESS_KEY=${CONTROLLER_ACCESS_KEY}
+elif [ $# -ne 4 ]; then
   showUsage
   exit 1
 else
   echo "Using Controller properties:"
-  echo " Controller URL = $1"
-  echo " Controller Port = $2"
-  echo " Account Name = $3"
-  echo " Access Key = $4"
-fi
-
-if [ -z "${CONTROLLER_URL}" ]; then
   APPD_CONTROLLER=$1
-else
-  APPD_CONTROLLER=${CONTROLLER_URL}
-fi
-
-if [ -z "${CONTROLLER_PORT}" ]; then
   APPD_PORT=$2
-else
-  APPD_PORT=${CONTROLLER_PORT}
-fi
-
-if [ -z "${CONTROLLER_ACCOUNT_NAME}" ]; then
   APPD_ACCOUNT_NAME=$3
-else
-  APPD_ACCOUNT_NAME=${CONTROLLER_ACCOUNT_NAME}
+  APPD_ACCESS_KEY=$4
 fi
 
-if [ -z "${CONTROLLER_ACCESS_KEY}" ]; then
-  APPD_ACCESS_KEY=$4
-else
-  APPD_ACCESS_KEY=${CONTROLLER_ACCESS_KEY}
-fi
+echo " Controller URL = ${APPD_CONTROLLER}"
+echo " Controller Port = ${APPD_PORT}"
+echo " Account Name = ${APPD_ACCOUNT_NAME}"
+echo " Access Key = ${APPD_ACCESS_KEY}"
 
 downloadInstallers; echo
 checkSSL
