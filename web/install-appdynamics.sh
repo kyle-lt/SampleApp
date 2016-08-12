@@ -1,10 +1,5 @@
 #! /bin/bash
 
-APPD_CONTROLLER=$1
-APPD_PORT=$2
-APPD_ACCOUNT_NAME=$3
-APPD_ACCESS_KEY=$4
-
 APPD_SSL="false"
 APPD_APP_NAME="SampleApp"
 APPD_TIER_NAME="WebServices"
@@ -40,6 +35,13 @@ env_config() {
 	cat /node-properties.txt /SampleApp/src/server.js > /SampleApp/src/_server.js && mv /SampleApp/src/_server.js /SampleApp/src/server.js
 }
 
+controllerURL() {
+  echo "angular.module('constants', [])
+	.constant('controller.url', '${APPD_CONTROLLER}')
+        .constant('controller.port', '${APPD_PORT}')
+        .constant('controller.ssl', '${APPD_SSL}');" > /SampleApp/src/public/js/appd-controller.js
+}
+
 showUsage() {
   echo "Usage: docker exec -it rest install-appdynamics"
   echo "OR:    docker exec -it rest install-appdynamics <controller-url> <controller-port> <account-name> <access-key>"
@@ -71,3 +73,4 @@ echo " Access Key = ${APPD_ACCESS_KEY}"
 installAppd
 checkSSL
 env_config
+controllerURL
