@@ -1,32 +1,7 @@
 (function() {
-    var app = angular.module('appdsampleapp');
+    var app = angular.module('exceptionsController', []);
 
-    app.service("ExceptionsService", ['$http', function($http) {
-
-        var service = {};
-
-        service.nodeException = function () {
-            return $http.get('/exception', {
-                method: 'GET'
-            });
-        };
-
-        service.javaException = function () {
-            return $http.get('/exceptions/java', {
-                method: 'GET'
-            });
-        };
-
-        service.dbException = function () {
-            return $http.get('/exceptions/sql', {
-                method: 'GET'
-            })
-        };
-
-        return service;
-    }]);
-
-    app.controller('ExceptionsController', ['$scope', '$http', 'ExceptionsService', function ($scope, $http, ExceptionsService) {
+    app.controller('exceptionsController', function ($scope, $http, ExceptionsService) {
 
         $scope.raisingNode = false;
         $scope.raisingJava = false;
@@ -82,6 +57,6 @@
             });;
         };
 
-    }])
+    })
 }).call(this);
 

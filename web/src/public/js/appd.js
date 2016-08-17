@@ -1,19 +1,26 @@
 (function() {
-    var app = angular.module('appdsampleapp', ['ngRoute']);
+    var app = angular.module('app', ['ngRoute',
+        'mainController',
+        'businessTransactionController',
+        'businessTransactionService',
+        'exceptionsController',
+        'exceptionsService',
+        'slowResponseController',
+        'constants']);
 
     app.config(function($routeProvider) {
         $routeProvider.when('/', {
-                templateUrl : 'view/home.html',
-                controller : 'AdminController'
-            });
+            templateUrl : 'view/home.html',
+            controller : 'mainController'
+        });
 
         $routeProvider.when('/fruitStand', {
             templateUrl : 'view/fruitStand.html'
         });
 
         $routeProvider.otherwise({
-                redirectTo: '/'
-            });
+            redirectTo: '/'
+        });
     });
 
     app.config([
@@ -52,31 +59,6 @@
                     };
                 }
             ]);
-        }
-    ]);
-
-    app.controller('AdminController', [
-        '$scope', '$http', '$location', function($scope, $http, $location) {
-            $scope.ready = false;
-            $scope.controllerUrl = '';
-
-            $scope.init = function () {
-                $scope.ready = true;
-            };
-
-            $scope.navigateTo = function(path) {
-                $location.path("/" + path);
-            };
-
-            $scope.openController = function (path) {
-                var url = this.controllerUrl + path;
-                window.open( url, "AppDynamicsController");
-            };
-
-
-            $scope.init();
-
-            return null;
         }
     ]);
 

@@ -37,9 +37,9 @@ env_config() {
 
 controllerURL() {
   echo "angular.module('constants', [])
-	.constant('controller.url', '${APPD_CONTROLLER}')
-        .constant('controller.port', '${APPD_PORT}')
-        .constant('controller.ssl', '${APPD_SSL}');" > /SampleApp/src/public/js/appd-controller.js
+	.constant('CONTROLLER_URL', '${APPD_CONTROLLER}')
+        .constant('CONTROLLER_PORT', '${APPD_PORT}')
+        .constant('CONTROLLER_SSL', '${APPD_SSL}');" > /SampleApp/src/public/js/appd-controller.js
 }
 
 showUsage() {

@@ -1,4 +1,4 @@
-<div ng-controller="BusinessTransactionController" class="section">
+<div ng-controller="businessTransactionController" class="section">
     <div class="left">
         <h4>Normal Business Transactions</h4>
 
@@ -31,7 +31,7 @@
                     <p style="margin-top: 9px;">{{product.stock}}</p>
                 </td>
                 <td>
-                    <button type="button" ng-click="product.save(true)" ng-disabled="product.loading" class="gray"> Add One
+                    <button type="button" ng-click="product.save(false)" ng-disabled="product.loading" class="gray"> Add One
                     </button>
 
                     <button type="button" ng-click="product.save(true)" ng-disabled="product.loading" class="gray"> Remove One
@@ -53,7 +53,7 @@
 
             <br>
 
-            <a ng-click="">View Business Transaction List</a>
+            <a ng-click="openController('Business Transaction List')">View Business Transaction List</a>
         </div>
     </div>
 

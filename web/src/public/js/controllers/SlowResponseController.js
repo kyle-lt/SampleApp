@@ -3,9 +3,9 @@
  */
 
 (function () {
-    var app = angular.module('appdsampleapp');
+    var app = angular.module('slowResponseController', []);
  
-    app.controller('SlowResponseController', ['$scope', '$http', function ($scope, $http) {
+    app.controller('slowResponseController', function ($scope, $http) {
         $scope.slowRequest = false;
 
         $scope.slowRequestGet = function(delay) {
@@ -18,5 +18,5 @@
                 return $scope.slowRequest = false;
             })
         };
-    }]);
+    });
 }).call(this);

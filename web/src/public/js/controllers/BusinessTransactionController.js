@@ -1,46 +1,7 @@
 (function() {
-    var app = angular.module('appdsampleapp');
+    var app = angular.module('businessTransactionController', []);
 
-    app.service("BusinessTransactionService", ['$http', function($http) {
-        var service = {};
-
-        service.save = function (id, name, useStock) {
-            return $http.get('/update', {
-                method: 'GET',
-                params: {
-                    id: id,
-                    name: name,
-                    stock: useStock < 0 ? 0 : useStock
-                }
-            })
-        };
-
-        service.delete = function (id) {
-            return $http.get('/delete', {
-                method: 'GET',
-                params: {
-                    id: id
-                }
-            });
-        };
-
-        service.add = function (name, stock) {
-            return $http.post('/add', {
-                params: {
-                    name: name,
-                    stock: stock
-                }
-            });
-        };
-
-        service.getProducts = function () {
-            return $http.get('/products');
-        };
-
-        return service;
-    }]);
-
-    app.controller('BusinessTransactionController', ['$scope', '$http', 'BusinessTransactionService', function ($scope, $http, BusinessTransactionService) {
+    app.controller('businessTransactionController', function ($scope, BusinessTransactionService) {
 
         $scope.products = [];
 
@@ -87,11 +48,7 @@
             $scope.selectedProduct.stock = parseInt(product.stock, 10);
 
             $scope.selectedProduct.save = function (decrement) {
-                if(!$scope.validateProduct(this.name, this.stock)) {
-                    return;
-                }
-
-                var useStock = decrement ? this.stock - 1 : this.stock;
+                var useStock = decrement ? this.stock - 1 : this.stock + 1;
 
                 BusinessTransactionService.save(this.id, this.name, useStock < 0 ? 0 : useStock).success(function (returnProduct) {
                     this.stock = parseInt(returnProduct.stock, 10);
@@ -143,9 +100,6 @@
         };
 
         $scope.addNew = function () {
-            if (!this.validateProduct($scope.newProduct.newName, $scope.newProduct.newStock)){
-                return;
-            }
 
             $scope.loadingNew = true;
             
@@ -168,23 +122,7 @@
             }
         };
 
-        $scope.validateProduct = function (name, stock) {
-            var isValid = true;
-
-            if (name === "") {
-                alert("Please enter a name");
-                isValid = false;
-            }
-
-            if (!angular.isNumber(stock)) {
-                alert("Please enter a valid number");
-                isValid = false;
-            }
-
-            return isValid;
-        };
-
         $scope.init();
 
-    }]);
+    });
 }).call(this);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="appdsampleapp">
+<html lang="en" ng-app="app">
 
 <head>
 
@@ -23,7 +23,7 @@
     <![endif]-->
 </head>
 
-<body ng-controller="AdminController" style="padding-top: 0px;">
+<body ng-controller="mainController" style="padding-top: 0px;">
 
 <!-- Navigation -->
 <nav>
@@ -64,9 +64,13 @@
 <script src="js/libs/bootstrap.min.js"></script>
 <script src="js/libs/angular-route.min.js"></script>
 <script src="js/appd.js"></script>
-<script src="js/BusinessTransactionController.js"></script>
-<script src="js/ExceptionsController.js"></script>
-<script src="js/SlowResponseController.js"></script>
+<script src="js/controllers/MainController.js"></script>
+<script src="js/controllers/BusinessTransactionController.js"></script>
+<script src="js/services/BusinessTransactionService.js"></script>
+<script src="js/controllers/ExceptionsController.js"></script>
+<script src="js/services/ExceptionsService.js"></script>
+<script src="js/controllers/SlowResponseController.js"></script>
+<script src="js/appd-controller.js"></script>
 
 </body>
 
