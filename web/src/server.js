@@ -104,12 +104,44 @@ server.get('/exceptions/java', function(serverRequest, res){
   });
 });
 
-server.get('/exceptions/slow', function(serverRequest, res) {
+server.get('/exceptions/slow/10', function(serverRequest, res) {
   data = {
     method: "GET",
-    url: "http://rest:8080/SampleApp/exceptions/slow/"+serverRequest.query.request
+    url: "http://rest:8080/SampleApp/exceptions/slow/10"
   };
 
+  request(data, function (error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send('[]');
+    }
+  });
+});
+
+
+//-------- slow transactions ----------------------
+
+server.get('/exceptions/slow/20', function(serverRequest, res) {
+  data = {
+    method: "GET",
+    url: "http://rest:8080/SampleApp/exceptions/slow/20"
+  };
+
+  request(data, function (error, apiResponse, body) {
+    if (apiResponse && body) {
+      res.send(body);
+    } else {
+      res.send('[]');
+    }
+  });
+});
+
+server.get('/exceptions/slow/30', function(serverRequest, res) {
+  data = {
+    method: "GET",
+    url: "http://rest:8080/SampleApp/exceptions/slow/30"
+  };
 
   request(data, function (error, apiResponse, body) {
     if (apiResponse && body) {
@@ -123,6 +155,7 @@ server.get('/exceptions/slow', function(serverRequest, res) {
 server.listen(3000, '0.0.0.0', function () {
   console.log('Node Server Started');
 });
+
 server.on('error', function (e) {
   console.log('Node Server Failed');
   console.log(e);

@@ -41,7 +41,7 @@
                 exceptionsJava++;
             }).error(function() {
                 alert('Unable to raise exception.');
-            }).finally(function () {
+            }).success(function (data) {
                 return $scope.raisingJava = false;
             });
         };
@@ -52,7 +52,7 @@
                 exceptionsSql++;
             }).error(function() {
                 alert('Unable to raise exception.');
-            }).finally(function () {
+            }).success(function (data) {
                 return $scope.raisingSql = false;
             });;
         };

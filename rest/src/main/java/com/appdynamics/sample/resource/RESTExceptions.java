@@ -44,7 +44,12 @@ public class RESTExceptions {
     @Path("/slow/{delay}")
     public Response slowRequest(@PathParam("delay") int delay) throws Exception {
         log.info("Slow transaction: delay = " + delay + " seconds");
-        for (int x = 0; x < delay; ++x) Thread.sleep(1000);
+
+        try {
+            for(int i = 0; i < delay; i++) Thread.sleep(1000);
+        } catch(InterruptedException ex) {
+        }
+
         return Response.ok()
                     .entity("Completed transaction with " + delay + " seconds delay")
                     .build();
