@@ -88,17 +88,17 @@ downloadInstallers() {
 
 installAppServerAgent() {
   echo "Installing App Server Agent to ${CATALINA_HOME}/appagent..."
-  unzip -q ${APP_AGENT_ZIP} -d ${CATALINA_HOME}/appagent && rm ${APP_AGENT_ZIP}
+  unzip -qo ${APP_AGENT_ZIP} -d ${CATALINA_HOME}/appagent && rm ${APP_AGENT_ZIP}
 }
 
 installDatabaseAgent() {
   echo "Installing Database Agent to ${DB_AGENT_HOME}..."
-  unzip -q ${DB_AGENT_ZIP} -d ${DB_AGENT_HOME} && rm ${DB_AGENT_ZIP}
+  unzip -qo ${DB_AGENT_ZIP} -d ${DB_AGENT_HOME} && rm ${DB_AGENT_ZIP}
 }
 
 installMachineAgent() {
   echo "Installing Machine Agent to ${MACHINE_AGENT_HOME}..."
-  unzip -q ${MACHINE_AGENT_ZIP} -d ${MACHINE_AGENT_HOME} && rm ${MACHINE_AGENT_ZIP}
+  unzip -qo ${MACHINE_AGENT_ZIP} -d ${MACHINE_AGENT_HOME} && rm ${MACHINE_AGENT_ZIP}
 }
 
 # Populate environment setup script with AppDynamics agent system properties
