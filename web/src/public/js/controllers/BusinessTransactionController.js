@@ -41,6 +41,23 @@
             this.getProducts();
         };
 
+        $scope.setBananas = function () {
+            var product = "Bananas";
+            var productCount = 100;
+
+            this.newProduct = {
+                newName: product,
+                newStock: productCount
+            };
+
+            this.addNew();
+        };
+
+        $scope.removeOranges = function () {
+            var product_id = 1;
+            this.deleteProduct(product_id);;
+        };
+
         var setupProductUpdate = function(product) {
 
             $scope.selectedProduct = product;
@@ -58,30 +75,31 @@
                 });
             };
 
-            $scope.selectedProduct.delete = function () {
-                BusinessTransactionService.delete(this.id).success(function () {
-                    var lookup, results;
-                    this.loading = false;
-                    results = [];
-                    for (lookup in $scope.products) {
-                        if (!$scope.products.hasOwnProperty(lookup)) {
-                            continue;
-                        }
-                        if ($scope.products[lookup].id === product.id) {
-                            $scope.products.splice(lookup, 1);
-                            break;
-                        } else {
-                            results.push(void 0);
-                        }
-                    }
-                    return results;
-                }).error(function () {
-                    alert('Unable to delete the product.');
-                    return product.loading = false;
-                });
-            };
-
             return $scope.products.push(product);
+        };
+
+        $scope.deleteProduct = function (id) {
+            var products = this.getProducts();
+            BusinessTransactionService.delete(id).success(function () {
+                var lookup, results;
+                this.loading = false;
+                results = [];
+                for (lookup in $scope.products) {
+                    if (!$scope.products.hasOwnProperty(lookup)) {
+                        continue;
+                    }
+                    if ($scope.products[lookup].id === id) {
+                        $scope.products.splice(lookup, 1);
+                        break;
+                    } else {
+                        results.push(void 0);
+                    }
+                }
+                return results;
+            }).error(function () {
+                alert('Unable to delete the product.');
+                return this.loading = false;
+            });
         };
 
         $scope.getProducts = function () {
@@ -117,7 +135,7 @@
 
         $scope.reset = function () {
             for(var i = 0; i < this.products.length; i++){
-                this.products[i].stock = 100;
+                this.products[i].stock = 99;
                 this.products[i].save(false);
             }
         };
