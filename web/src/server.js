@@ -67,6 +67,7 @@ function productsCall(method, params, serverRequest, res){
 
 //-------- Exceptions ----------------------
 
+//This endpoint doesn't exist on Java backend
 server.get('/exception', function (serverRequest, response) {
   domain.run(function () {
     throw new Error('User triggered exception!');
@@ -74,10 +75,10 @@ server.get('/exception', function (serverRequest, response) {
   response.send("[]");
 });
 
-server.get('/exceptions/sql', function(serverRequest, res){
+server.get('/sql_error', function(serverRequest, res){
   data = {
     method: "GET",
-    url: "http://rest:8080/SampleApp/exceptions/sql"
+    url: "http://rest:8080/SampleApp/sql_error"
   };
   
   request(data, function (error, apiResponse, body) {
@@ -89,10 +90,10 @@ server.get('/exceptions/sql', function(serverRequest, res){
   });
 });
 
-server.get('/exceptions/java', function(serverRequest, res){
+server.get('/java_error', function(serverRequest, res){
   data = {
     method: "GET",
-    url: "http://rest:8080/SampleApp/exceptions/java"
+    url: "http://rest:8080/SampleApp/java_error"
   };
 
   request(data, function (error, apiResponse, body) {

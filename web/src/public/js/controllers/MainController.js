@@ -44,13 +44,29 @@
                     case "Exceptions":
                         location = "APP_ERRORS";
                         break;
+                    case "Getting Started":
+                        location = "AD_GETTING_STARTED";
+                        break;
                     default:
                         location = "AD_HOME_OVERVIEW";
                         break;
                 }
 
                 var s = CONTROLLER_SSL == "true" ? "s" : "" ;
-                var url = "http" + s + "://" + CONTROLLER_URL + ":" + CONTROLLER_PORT + "/?accountName="+ CONTROLLER_ACCOUNT_NAME +"#/location=" + location + "&application=" + APP_ID;
+                
+                // Congratulations link to "Get Started with Your Own App"
+                if (location == "AD_GETTING_STARTED"){
+                    var url = "http" + s + "://" + CONTROLLER_URL + ":" + CONTROLLER_PORT + "/?accountName="+ CONTROLLER_ACCOUNT_NAME +"#/location=" + location;
+                } else {
+                    // If App ID is missing, APP_ID is 0, then open controller to home page
+                    if (APP_ID == 0) {
+                        location = "AD_HOME_OVERVIEW";
+                        var url = "http" + s + "://" + CONTROLLER_URL + ":" + CONTROLLER_PORT + "/?accountName="+ CONTROLLER_ACCOUNT_NAME +"#/location=" + location;
+                    } else {
+                        var url = "http" + s + "://" + CONTROLLER_URL + ":" + CONTROLLER_PORT + "/?accountName="+ CONTROLLER_ACCOUNT_NAME +"#/location=" + location + "&application=" + APP_ID;
+                    }
+                }
+
                 window.open(url, "AppDynamicsController");
             };
         

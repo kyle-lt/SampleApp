@@ -55,16 +55,11 @@
         <p style="margin-left:20px">1. You’ve just sold 5 apples! Click “Sell One” 5 times.</p> 
         <p style="margin-left:20px">2. It’s the end of the day and your suppliers are refreshing your inventory. Click “Restock” to reset your initial stock back to 100 apples, 100 oranges, 100 bananas, and 100 lemons.</p> 
         <p style="margin-left:20px">3. Bananas have just come in season and you found a supplier. Click “Stock Bananas" to add them to your inventory list.</p> 
-        <p style="margin-left:20px">4. Your orange supplier is going out of business, so you won’t be selling them at the fruit stand. Click “Remove Oranges to remove them from the inventory list. </p> 
+        <p style="margin-left:20px">4. Your orange supplier is going out of business, so you won’t be selling them at the fruit stand. Click “Remove Oranges" to remove them from the inventory list. </p> 
 
         <br>
 
-        <p>Each of these operations is automatically tracked by AppDynamics as a <span class="keyword">Business Transaction</span>. A Business Transaction represents the end-to-end processing path used to fulfill a service request 
-        in the monitored environment. The Agents monitoring the sample app have sent data to the AppDynamics
-        Controller, which automatically generates a list of business transactions based on the detected activity.</p> 
-
-        <p>In the Business Transaction List view, you can see all the Business Transactions discovered by AppDynamics,
-        and basic metrics like <span class="keyword">load (Calls/min)</span> and the <span class="keyword">average response time</span> it takes to execute. </p>
+        <p>Each of these operations is automatically tracked by AppDynamics as a <span class="keyword">Business Transaction</span>.</p>
 
         </p>
         </div>
@@ -74,14 +69,14 @@
         <div class="gray-text-box">
             <h5>What is a Business Transaction</h5>
 
-            <p>A business transaction represents the end-to-end processing path used to fulfill a service request in the monitored environment.
-            When you connect agents to a Controller, the Controller automatically generates a list of business transactions based on the activity that the agents detect.</p>
+            <p>A Business Transaction represents the end-to-end processing path used to fulfill a service request in the monitored environment. The Agents monitoring the sample app have sent data to the AppDynamics Controller.</p>
+            <p>In the Business Transaction List view, you can see all the Business Transactions discovered by AppDynamics, and basic metrics like load (Calls/min) and the average response time it takes to execute.</p>
 
-            <p><b> Note: It make take up to 2 minutes for Business Transactions and metrics to update. </b></p>
+            <p><b> Note: It takes up to 2 minutes for Business Transactions and metrics to update. </b></p>
             
             <br>
             
-            <img style="margin-bottom: 20px;" src="img/screenshots/business_transactions.png" />
+            <img style="margin-bottom: 10px;" src="img/screenshots/business_transactions.png" />
             <button type="button" class="blue" style="height: 36px;" ng-click="openController('Business Transaction List')">View Business Transaction List</button>
         </div>
 

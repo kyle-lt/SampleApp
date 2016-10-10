@@ -18,6 +18,14 @@
             templateUrl : 'view/fruitStand.html'
         });
 
+        $routeProvider.when('/errorsExceptions', {
+            templateUrl : 'view/errorsExceptions.html'
+        });
+
+        $routeProvider.when('/congratulations', {
+            templateUrl : 'view/congratulations.html'
+        });
+
         $routeProvider.otherwise({
             redirectTo: '/'
         });

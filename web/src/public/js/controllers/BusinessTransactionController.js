@@ -21,6 +21,8 @@
             }.bind(this));
         };
 
+        
+
         $scope.setDefaultProducts = function () {
             var products = ["oranges",
                 "apples",
