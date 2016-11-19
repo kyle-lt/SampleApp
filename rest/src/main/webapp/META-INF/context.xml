@@ -20,7 +20,7 @@
     <Resource name="jdbc/db"
               auth="Container"
               type="javax.sql.DataSource"
-              username="root" password="***REMOVED***"
+              username="root" password="secretquery"
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://db:3306/sample?createDatabaseIfNotExist=true"/>
 </Context>

@@ -24,7 +24,7 @@ services:
     container_name: db
     image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=***REMOVED***  
+      - MYSQL_ROOT_PASSWORD=secretquery  
     ports: 
       - "3306:3306"
 
