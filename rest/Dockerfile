@@ -60,29 +60,23 @@ RUN yum install -y unzip
 ADD install-appdynamics.sh /usr/local/bin/install-appdynamics
 RUN chmod +x /usr/local/bin/install-appdynamics
 
-ENV MACHINE_AGENT_HOME /machineagent
-ENV MACHINE_AGENT_OUTPUT ${MACHINE_AGENT_HOME}/machine-agent.out
 ENV DB_AGENT_HOME /dbagent
 ENV DB_AGENT_OUTPUT ${DB_AGENT_HOME}/dbagent.out
 
-# Scripts to start Tomcat and AppDynamics Database/Machine Agents
+# Scripts to start Tomcat and AppDynamics Database Agents
 ADD start-db-agent.sh /usr/local/bin/start-db-agent
-ADD start-machine-agent.sh /usr/local/bin/start-machine-agent
 ADD start-tomcat.sh /usr/local/bin/start-tomcat
 ADD start-all.sh /usr/local/bin/start-all
 
 RUN chmod +x /usr/local/bin/start-db-agent
-RUN chmod +x /usr/local/bin/start-machine-agent
 RUN chmod +x /usr/local/bin/start-tomcat
 RUN chmod +x /usr/local/bin/start-all
 
 # Scripts to tail log file output from AppDynamics Agents
 ADD tail-db-agent.sh /usr/local/bin/tail-db-agent
-ADD tail-machine-agent.sh /usr/local/bin/tail-machine-agent
 ADD tail-java-agent.sh /usr/local/bin/tail-java-agent
 
 RUN chmod +x /usr/local/bin/tail-db-agent
-RUN chmod +x /usr/local/bin/tail-machine-agent
 RUN chmod +x /usr/local/bin/tail-java-agent
 
 # AppDynamics Agent configuration

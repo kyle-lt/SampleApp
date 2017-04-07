@@ -5,14 +5,15 @@ if [ ! -s /env.sh ]; then
   exit
 fi
 
-start-machine-agent
-echo "*****************************************************"
 start-db-agent
 echo "*****************************************************"
+
+sleep 30
+
 start-tomcat
 echo "*****************************************************"
 
-echo "The Sample App REST services are running at: http://192.168.99.100:8080/SampleApp/products"
-echo "The Sample App web application is running at: http://192.168.99.100:3000/#"
+echo "The Sample App REST service is running at: http://<your-docker-host>:8080/SampleApp/products"
+echo "The Sample App web application is running at: http://<your-docker-host>:3000/#"
 
 exit 0

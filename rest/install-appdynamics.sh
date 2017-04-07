@@ -32,12 +32,10 @@ APPD_DOWNLOAD_URL=https://aperture.appdynamics.com/download/prox/download-file
 APPD_AGENTS=(
   "sun-jvm/${VERSION}/AppServerAgent-${VERSION}.zip"
   "db/${VERSION}/dbagent-${VERSION}.zip"
-  "machine/${VERSION}/MachineAgent-${VERSION}.zip"
 )
 
 APP_AGENT_ZIP=$(basename ${APPD_AGENTS[0]%-*}).zip
 DB_AGENT_ZIP=$(basename ${APPD_AGENTS[1]%-*}).zip
-MACHINE_AGENT_ZIP=$(basename ${APPD_AGENTS[2]%-*}).zip
 
 APPD_SSL="false"
 APPD_APP_NAME="SampleApp"
@@ -119,11 +117,6 @@ installDatabaseAgent() {
   unzip -qo ${DB_AGENT_ZIP} -d ${DB_AGENT_HOME} && rm ${DB_AGENT_ZIP}
 }
 
-installMachineAgent() {
-  echo "Installing Machine Agent to ${MACHINE_AGENT_HOME}..."
-  unzip -qo ${MACHINE_AGENT_ZIP} -d ${MACHINE_AGENT_HOME} && rm ${MACHINE_AGENT_ZIP}
-}
-
 # Populate environment setup script with AppDynamics agent system properties
 # This file should be included in all agent startup command scripts
 setupAppdEnv() {
@@ -134,8 +127,6 @@ setupAppdEnv() {
   echo export APP_SERVER_AGENT_JAVA_OPTS="\"-Dappdynamics.controller.hostName=${APPD_CONTROLLER} -Dappdynamics.controller.port=${APPD_PORT} -Dappdynamics.controller.ssl.enabled=${APPD_SSL} -Dappdynamics.agent.applicationName=${APPD_APP_NAME} -Dappdynamics.agent.tierName=${APPD_TIER_NAME} -Dappdynamics.agent.nodeName=${APPD_NODE_NAME} -Dappdynamics.agent.accountName=${APPD_ACCOUNT_NAME} -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY}"\" >> /env.sh
 
   echo export DB_AGENT_JAVA_OPTS="\"-Dappdynamics.controller.hostName=${APPD_CONTROLLER} -Dappdynamics.controller.port=${APPD_PORT} -Dappdynamics.controller.ssl.enabled=${APPD_SSL} -Dappdynamics.agent.accountName= ${APPD_ACCOUNT_NAME} -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY}"\" >> /env.sh
-
-  echo export MACHINE_AGENT_JAVA_OPTS="\"-Dappdynamics.controller.hostName=${APPD_CONTROLLER} -Dappdynamics.controller.port=${APPD_PORT} -Dappdynamics.controller.ssl.enabled=${APPD_SSL} -Dappdynamics.agent.applicationName=${APPD_APP_NAME} -Dappdynamics.agent.tierName=${APPD_TIER_NAME} -Dappdynamics.agent.nodeName=${APPD_NODE_NAME} -Dappdynamics.agent.accountName=${APPD_ACCOUNT_NAME} -Dappdynamics.agent.accountAccessKey=${APPD_ACCESS_KEY}"\" >> /env.sh
 
   echo "AppDynamics Agent configuration saved to /env.sh"
 }
@@ -185,8 +176,6 @@ echo "*****************************************************"
 installAppServerAgent
 echo "*****************************************************"
 installDatabaseAgent
-echo "*****************************************************"
-installMachineAgent
 echo "*****************************************************"
 setupAppdEnv
 echo "*****************************************************"
