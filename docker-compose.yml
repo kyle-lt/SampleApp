@@ -6,7 +6,7 @@ services:
     #Otherwise it will pull pre-built images from Docker Hub
     #build: ./rest
     container_name: rest
-    image: appdynamics/sample-app-rest
+    image: kjtully/dockersampleapp/sample-app-rest
     environment:
       - CONTROLLER_URL=
       - CONTROLLER_PORT=
@@ -17,15 +17,15 @@ services:
       - AGENT_VERSION=
     links:
       - db
-    ports: 
+    ports:
       - "8080:8080"
 
   db:
     container_name: db
     image: mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=secretquery  
-    ports: 
+      - MYSQL_ROOT_PASSWORD=secretquery
+    ports:
       - "3306:3306"
 
   web:
@@ -33,7 +33,7 @@ services:
     #Otherwise it will pull pre-built images from Docker Hub
     #build: ./web
     container_name: web
-    image: appdynamics/sample-app-web
+    image: kjtully/dockersampleapp/sample-app-web
     environment:
       - CONTROLLER_URL=
       - CONTROLLER_PORT=
