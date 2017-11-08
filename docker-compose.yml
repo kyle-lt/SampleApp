@@ -33,7 +33,7 @@ services:
     #Otherwise it will pull pre-built images from Docker Hub
     #build: ./web
     container_name: web
-    image: kjtully/dockersampleapp/sample-app-web
+    image: appdynamics/sample-app-web
     environment:
       - CONTROLLER_URL=
       - CONTROLLER_PORT=
