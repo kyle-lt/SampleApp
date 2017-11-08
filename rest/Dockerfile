@@ -22,6 +22,7 @@ RUN ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Install OS packages
 RUN yum install -y wget unzip rsyslog
+RUN yum install -y tar
 
 # Environment vars: Tomcat
 ENV TOMCAT_MAJOR_VERSION 8
