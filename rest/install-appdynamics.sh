@@ -27,13 +27,13 @@ APPD_LOGIN_URL=https://login.appdynamics.com/sso/login/
 VERSION=${AGENT_VERSION}
 APPD_TEMP_DIR=.appd
 
-# Portal Download 
+# Portal Download
 APPD_DOWNLOAD_URL=https://aperture.appdynamics.com/download/prox/download-file
 APPD_AGENTS=(
   "sun-jvm/${VERSION}/AppServerAgent-${VERSION}.zip"
-  "db/${VERSION}/dbagent-${VERSION}.zip"
-  "machine/${VERSION}/MachineAgent-${VERSION}.zip"
 )
+# "db/${VERSION}/dbagent-${VERSION}.zip"
+# "machine/${VERSION}/MachineAgent-${VERSION}.zip"
 
 APP_AGENT_ZIP=$(basename ${APPD_AGENTS[0]%-*}).zip
 DB_AGENT_ZIP=$(basename ${APPD_AGENTS[1]%-*}).zip
@@ -83,7 +83,7 @@ downloadInstallers() {
          --post-data "username=$USER_NAME&password=$PASSWORD" \
          --no-check-certificate \
          -O ${APPD_TEMP_DIR}/index.html \
-         ${APPD_LOGIN_URL} 
+         ${APPD_LOGIN_URL}
 
     SSO_SESSIONID=`grep "sso-sessionid" ${APPD_TEMP_DIR}/cookies.txt`
     if [ ! "$SSO_SESSIONID" ]; then
@@ -99,7 +99,7 @@ downloadInstallers() {
            ${APPD_DOWNLOAD_URL}/${APPD_AGENTS[$i]}
       if [ $? -ne 0 ]; then
         echo "Error: unable to download $APPD_DOWNLOAD_URL/${APPD_AGENTS[$i]}"
-        exit 
+        exit
       fi
     done
 
@@ -148,7 +148,7 @@ showUsage() {
 
 cleanup() {
   rm -rf .appd
-} 
+}
 trap cleanup EXIT
 
 checkEnv
@@ -184,9 +184,9 @@ checkSSL
 echo "*****************************************************"
 installAppServerAgent
 echo "*****************************************************"
-installDatabaseAgent
-echo "*****************************************************"
-installMachineAgent
-echo "*****************************************************"
+#installDatabaseAgent
+#echo "*****************************************************"
+#installMachineAgent
+#echo "*****************************************************"
 setupAppdEnv
 echo "*****************************************************"

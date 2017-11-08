@@ -10,15 +10,15 @@ Docker based Sample Application with Java REST server, MySQL database and Node.j
      - **PORTAL_USERNAME**: Your appdynamics.com account (required for downloading agents)
      - **PORTAL_PASSWORD**: Your appdynamics.com password (required for downloading agents)
      - **AGENT_VERSION**: Your 4 digit controller version, for example: 4.2.3.2.
-     - **APP_ID**: Not applicable if trying from GitHub source. Leave empty. (Note, some features are not availble with APP_ID left empty)
+     - **APP_ID**: Not applicable if trying from GitHub source. Leave empty. (Note, some features are not available with APP_ID left empty)
 
 > **Note**: If you want to build Docker images from source code, clone the project and uncomment line 7 and line 34 in docker-compose.yml.
 
 ### Deploy
 
-1. Start the application from docker-compose.yml directory by running: 
+1. Start the application from docker-compose.yml directory by running:
 
-    ```docker-compose up -d``` 
+    ```docker-compose up -d```
 2. Once you see "... Creating web", run this command to install AppDynamics agents:
 
     ```docker exec -it rest install-appdynamics; docker exec rest start-all```
@@ -29,12 +29,19 @@ Docker based Sample Application with Java REST server, MySQL database and Node.j
 Open frontend in browser, you will see this:
 
 ![alt tag](https://github.com/Appdynamics/SampleApp/blob/master/web/src/public/img/sampleapp.png)
+
 ### Clean up
-* Stop and remove all the running containers: 
- 
+* Stop and remove all the running containers:
+
     ```docker-compose down```
-* Remove all the images: 
+* Remove all the images:
 
     ``` docker rmi -f appdynamics/sample-app-rest appdynamics/sample-app-web mysql```
 * Delete docker-compose.yml
 * Your enviroment is clean now!
+```
+
+### ktully changes
+1. Edited /rest/install-appdynamics.sh to disable installation, configuration,
+and start of machine and db agents
+2. Edited /rest/Dockerfile to disable machine, db agents
