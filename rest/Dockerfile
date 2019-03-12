@@ -1,5 +1,4 @@
 FROM centos:centos6
-MAINTAINER alana.anderson@appdynamics.com
 
 # Install Oracle Java JDK 8
 # Download the Oracle JDK from http://www.oracle.com/technetwork/java/javase/downloads
@@ -61,10 +60,12 @@ RUN yum install -y unzip
 ADD install-appdynamics.sh /usr/local/bin/install-appdynamics
 RUN chmod +x /usr/local/bin/install-appdynamics
 
-ENV MACHINE_AGENT_HOME /machineagent
-ENV MACHINE_AGENT_OUTPUT ${MACHINE_AGENT_HOME}/machine-agent.out
-ENV DB_AGENT_HOME /dbagent
-ENV DB_AGENT_OUTPUT ${DB_AGENT_HOME}/dbagent.out
+# ktully - commenting out all machine agent and db agent capabilities
+
+#ENV MACHINE_AGENT_HOME /machineagent
+#ENV MACHINE_AGENT_OUTPUT ${MACHINE_AGENT_HOME}/machine-agent.out
+#ENV DB_AGENT_HOME /dbagent
+#ENV DB_AGENT_OUTPUT ${DB_AGENT_HOME}/dbagent.out
 
 # Scripts to start Tomcat and AppDynamics Database/Machine Agents
 #ADD start-db-agent.sh /usr/local/bin/start-db-agent

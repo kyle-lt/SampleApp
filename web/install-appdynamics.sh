@@ -30,7 +30,7 @@ APPD_NODE_NAME="WebNode"
 installAppd() {
 	echo "Installing AppDynamics:"
 	# Install AppDynamics node.js agent
-	npm install appdynamics@next
+	npm install appdynamics@4.3
 }
 
 checkSSL() {
@@ -50,6 +50,7 @@ env_config() {
 		accountName: '${APPD_ACCOUNT_NAME}',
 		accountAccessKey: '${APPD_ACCESS_KEY}',
 		applicationName: '${APPD_APP_NAME}',
+                libagent: 'true',
 		tierName: '${APPD_TIER_NAME}',
 		nodeName: '${APPD_NODE_NAME}' // The controller will automatically append the node name with a unique number
 	});" > node-properties.txt

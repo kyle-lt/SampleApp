@@ -1,5 +1,4 @@
 FROM centos:centos6
-MAINTAINER alana.anderson@appdynamics.com
 
 # Install Node.js 4.2.1
 RUN yum install -y wget

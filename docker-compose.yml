@@ -4,17 +4,17 @@ services:
   rest:
     #Uncomment line below if you want to build from Github source code
     #Otherwise it will pull pre-built images from Docker Hub
-    #build: ./rest
+    build: ./rest
     container_name: rest
     image: kjtully/dockersampleapp/sample-app-rest
     environment:
-      - CONTROLLER_URL=
-      - CONTROLLER_PORT=
-      - CONTROLLER_ACCOUNT_NAME=
-      - CONTROLLER_ACCESS_KEY=
-      - PORTAL_USERNAME=
-      - PORTAL_PASSWORD=
-      - AGENT_VERSION=
+      - CONTROLLER_URL=ktullyappdcontroll-ktullyappdcontroll-nl3ui5zb.srv.ravcloud.com
+      - CONTROLLER_PORT=8090
+      - CONTROLLER_ACCOUNT_NAME=customer1
+      - CONTROLLER_ACCESS_KEY=894d6f5e-da8d-4d24-b07b-573fcb72750c
+      - PORTAL_USERNAME=kylejosephtully@gmail.com
+      - PORTAL_PASSWORD=P@ssw0rd
+      - AGENT_VERSION=4.4.2.22394
     links:
       - db
     ports:
@@ -31,14 +31,14 @@ services:
   web:
     #Uncomment line below if you want to build from Github source code
     #Otherwise it will pull pre-built images from Docker Hub
-    #build: ./web
+    build: ./web
     container_name: web
-    image: appdynamics/sample-app-web
+    image: kjtully/dockersampleapp/sample-app-web
     environment:
-      - CONTROLLER_URL=
-      - CONTROLLER_PORT=
-      - CONTROLLER_ACCOUNT_NAME=
-      - CONTROLLER_ACCESS_KEY=
+      - CONTROLLER_URL=ktullyappdcontroll-ktullyappdcontroll-nl3ui5zb.srv.ravcloud.com
+      - CONTROLLER_PORT=8090
+      - CONTROLLER_ACCOUNT_NAME=customer1
+      - CONTROLLER_ACCESS_KEY=894d6f5e-da8d-4d24-b07b-573fcb72750c
       - APP_ID=
     links:
       - rest
