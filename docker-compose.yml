@@ -8,13 +8,13 @@ services:
     container_name: rest
     image: kjtully/dockersampleapp/sample-app-rest
     environment:
-      CONTROLLER_URL: "kjt.hopto.org"
-      CONTROLLER_PORT: "8090"
-      CONTROLLER_ACCOUNT_NAME: "customer1"
-      CONTROLLER_ACCESS_KEY: "1a9bf22a-ff4e-48ea-ae70-9e39cc952a0f"
-      PORTAL_USERNAME: "kylejosephtully@gmail.com"
-      PORTAL_PASSWORD: "P@ssw0rd"
-      AGENT_VERSION: "4.4.2.22394"
+      CONTROLLER_URL: "$CONTROLLER_URL"
+      CONTROLLER_PORT: "$CONTROLLER_PORT"
+      CONTROLLER_ACCOUNT_NAME: "$CONTROLLER_ACCOUNT_NAME"
+      CONTROLLER_ACCESS_KEY: "$CONTROLLER_ACCESS_KEY"
+      PORTAL_USERNAME: "$PORTAL_USERNAME"
+      PORTAL_PASSWORD: "$PORTAL_PASSWORD"
+      AGENT_VERSION: "$AGENT_VERSION"
     ports:
       - "8080:8080"
 

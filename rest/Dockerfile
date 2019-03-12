@@ -71,7 +71,7 @@ RUN chmod +x /usr/local/bin/install-appdynamics
 #ADD start-db-agent.sh /usr/local/bin/start-db-agent
 #ADD start-machine-agent.sh /usr/local/bin/start-machine-agent
 ADD start-tomcat.sh /usr/local/bin/start-tomcat
-ADD start-all.sh /usr/local/bin/start-all
+#ADD start-all.sh /usr/local/bin/start-all
 
 #RUN chmod +x /usr/local/bin/start-db-agent
 #RUN chmod +x /usr/local/bin/start-machine-agent
