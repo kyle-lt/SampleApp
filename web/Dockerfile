@@ -23,6 +23,6 @@ RUN cat appdynamics.js /SampleApp/src/server.js > /SampleApp/src/_server.js \
     && rm /SampleApp/src/server.js appdynamics.js \
     && mv /SampleApp/src/_server.js /SampleApp/src/server.js
 
-CMD node SampleApp/src/server.js
+CMD node /SampleApp/src/server.js
 
 EXPOSE 3000

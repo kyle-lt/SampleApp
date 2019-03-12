@@ -1,3 +1,3 @@
 require("appdynamics").profile({
-                libagent: 'true'
-        });
+	libagent: 'true'
+});
