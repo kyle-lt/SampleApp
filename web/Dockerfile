@@ -9,18 +9,20 @@ RUN tar --strip-components 1 -xzf node-v4.2.1-linux-x64.tar.gz && rm node-v4.2.1
 # Install OS packages
 RUN yum install -y git unzip rsyslog
 
+# Install AppDynamics
+RUN npm install appdynamics@4.3.7
+
 RUN mkdir -p  SampleApp
 ADD src /SampleApp/src
 ADD package.json /SampleApp/package.json
 RUN cd SampleApp && npm install
 
-ADD install-appdynamics.sh /usr/local/bin/install-appdynamics
-ADD start-all.sh /usr/local/bin/start-all
+# Prepend appdynamics.js (require statement) to top of index.js and delete temp files
+ADD appdynamics.js appdynamics.js
+RUN cat appdynamics.js /SampleApp/src/server.js > /SampleApp/src/_server.js \
+    && rm /SampleApp/src/server.js appdynamics.js \
+    && mv /SampleApp/src/_server.js /SampleApp/src/server.js
 
-RUN chmod +x /usr/local/bin/install-appdynamics
-RUN chmod +x /usr/local/bin/start-all
-
-# Tail syslog to keep container running
-CMD install-appdynamics && start-all && tail -f /var/log/messages
+CMD node SampleApp/src/server.js
 
 EXPOSE 3000
